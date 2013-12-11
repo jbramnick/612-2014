@@ -1,2 +1,4 @@
-studentsCode_612-2014
+Student's code
 =====================
+
+You guys should periodically push your code here.
