@@ -1,5 +1,6 @@
-class functionRegistry {
-  //initialize varaibles and things to be ran
+#include "functionRegistry.h"
+// look at the other file "functionRegistry.h"
+
+functionRegistry::functionRegistry()
+{
   
-  
-}
