@@ -1,3 +1,11 @@
-class smoothJoystick {
+#include "smoothJoystick.h"
 
+smoothJoystick::smoothJoystick()
+{
+  
+}
+
+smoothJoystick::~smoothJoystick()
+{
+  
 }
