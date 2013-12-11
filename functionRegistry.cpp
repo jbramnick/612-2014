@@ -1,6 +1,11 @@
-#include "functionRegistry.h"
-// look at the other file "functionRegistry.h"
+#include "functionRegistry.h" // include other file "functionRegistry.h"
 
-functionRegistry::functionRegistry()
+functionRegistry::functionRegistry()    // constructor
 {
   
+}
+  
+functionRegistry::~functionRegistry()   // destructor
+{
+  
+}
