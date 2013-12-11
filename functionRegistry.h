@@ -1,6 +1,8 @@
 #ifndef FUNCTIONREGISTRY_H_INCLUDED
 #define FUNCTIONREGISTRY_H_INCLUDED
 
+#include <vector>
+
 class functionRegistry {
 public:
   void functionRegistry();
