@@ -11,7 +11,7 @@ functionRegistry::~functionRegistry()   // destructor
   
 }
 
-void functionRegistry::addUpdateFunction (functionName f)
+void functionRegistry::addUpdateFunction (functionName f) // Swaraj said something about not needing instances, reference last year's code
 {
   functions.push_back(f);
 }
