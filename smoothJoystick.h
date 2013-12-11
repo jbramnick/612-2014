@@ -1,0 +1,8 @@
+#ifndef SMOOTHJOYSTICK_H_INCLUDED
+#define SMOOTHJOYSTICK_H_INCLUDED
+
+class smoothJoystick {
+
+};
+
+#endif // SMOOTHJOYSTICK_H_INCLUDED
