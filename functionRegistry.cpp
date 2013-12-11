@@ -1,4 +1,3 @@
-
-class Robotclass {
+class functionRegistry {
 
 }
