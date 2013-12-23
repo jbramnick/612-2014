@@ -1,11 +1,11 @@
-#include "Smoothjoystic.h"
+#include "Smoothjoystick.h"
 using namespace std;
 
 SmoothJoystick::Smoothjoystick()
 {
     gear = "low";
-    LeftWheelSpeed = 0;
-    RightWheelSpeed = 0;
+    LeftWheelsOn = false;
+    RightWheelsOn = false;
 }
 
 Smoothjoystick::~Smoothjoystick()
@@ -18,79 +18,72 @@ void Smoothjoystick::failsafe()
     while(/*Start button pressed*/)
     {
         gear = "low";
-        LeftWheelSpeed = 0;
-        RightWheelSpeed = 0;
+        LeftWheelsOn = false;
+        RightWheelsOn = false;
     }
 }
 
-void Smoothjoystick:High_Gear()
+void Smoothjoystick:Change_Gear()
 {
-    while(/*Y button pressed*/)
-    {
-        if(gear != "high")
-        {
-            gear = "high";
-        }
-    }
-}
-
-void Smoothjoystick::Low_Gear()
-{
-    while(/*Y button pressed*/)
-    {
-        if(gear != "low")
-        {
-            gear = "low";
-        }
-    }
+	while(/*Y button is pressed*/) //toggles gear
+	{
+		if(gear == high)
+		{
+			gear = low;
+		}
+		else()
+		{
+			gear = high;
+		}
+	}
 }
 
 void Smoothjoystick::Forward()
 {
     while(/*left thumbstick on up*/)
     {
-        if(gear = "high")
-        {
-            LeftWheelSpeed = 1.0;
-            RightWheelSpeed = 1.0;
-        }else if(gear = "low")
-        {
-            LeftWheelSpeed = 0.5;
-            RightWheelSpeed = 0.5;
-        }
+        RightWheelsOn = true;
+        LeftWheelsOn = true;
     }
+
+    while(/*left joystick neutral*/)
+	{
+        RightWheelsOn = false;
+        LeftWheelsOn = false;
+	}
 }
 
 void Smoothjoystick::Backwards()
 {
     while(/*Left thubbstick on down*/)
     {
-        if(gear = "High")
-        {
-            LeftWheelSpeed = -1.0;
-            RightWheelSpeed = -1.0;
-        }else if(gear = "low")
-        {
-            LeftWheelSpeed = -0.5;
-            RightWheelSpeed = 0.5;
-        }
+        RightWheelsOn = true;
+        LeftWheelsOn = true;
     }
+
+	while(/*left joystick neutral*/)
+	{
+        RightWheelsOn = false;
+        LeftWheelsOn = false;
+	}
 }
+
 void Smoothjoystick::Right()
 {
-    while(/*Right thumbstick on right*/)
+    while("Right thumbstick on right")
     {
-        LeftWheelSpeed = 0.5;
+        LeftWheelsOn = true;
     }
 }
 
 void Smoothjoystick::Left()
 {
-    while(/*Right thumbstick on left*/)
+    while(Right thumbstick on left)
     {
-        RightWheelSpeed = 0.5;
+        RightWheelsOn = true;
     }
 }
+
 
 void Smoothjoystick::checksmooth()
 {

@@ -5,22 +5,25 @@
 
 #ifndef SMOOTHJOYSTICK_H
 #define SMOOTHJOYSTICK_H
-
 Class SmoothJoystick
 {
 	public:
-		static const string gear_level;
-		static const int LeftWheelSpeed;
-		static const int RightWheelSpeed;
+		static const bool LeftWheelsOn;
+		static const bool RightWheelsOn;
 		SmoothJoystick();
 		void failsafe();
-		void High_Gear();
-		void Low_Gear();
+		void ChangeGear();
 		void Forward();
 		void Backwards();
 		void Left();
 		void Right();
 		void checksmooth();
+
+		enum gear
+		{
+            high
+            low
+		};
 }
 
 #endif
