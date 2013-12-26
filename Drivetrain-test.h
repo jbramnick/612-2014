@@ -19,16 +19,16 @@ Class Drivetrain()
 
 		//declare talons
 		Talon *left_motor1;
-        left_motor1 = new Talon(1);
+		left_motor1 = new Talon(1);
 
 		Talon *left_motor2;
-        left_motor2 = new Talon(1);
+		left_motor2 = new Talon(2);
 
-        Talon *right_motor1;
-        right_motor1 = new Talon(1);
+		Talon *right_motor1;
+		right_motor1 = new Talon(3);
 
-        Talon *right_motor2;
-        right_motor2 = new Talon(1);
+		Talon *right_motor2;
+		right_motor2 = new Talon(4);
 
 }
 #endif
