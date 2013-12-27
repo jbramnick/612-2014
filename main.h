@@ -9,6 +9,7 @@ class robot_class : public IterativeRobot
 {
     public:
         robot_class();
+        ~robot_class();
         
         void RobotInit();
         void DisabledInit();
