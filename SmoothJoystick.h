@@ -13,7 +13,7 @@ public:
     ~SmoothJoystick();
     bool GetRawButton(UINT32 btn);
     bool IsAxisZero(unsigned int);
-    Trigger getTriggerState();
+    Trigger GetTriggerState();
 private:
     
 };
