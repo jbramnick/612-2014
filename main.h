@@ -2,28 +2,26 @@
 #define MAIN_H
 
 #include <IterativeRobot.h>
-#include "DigitalInput.h"
-#include "Relay.h"
+#include <Joystick.h>
+#include "DriveTrain.h"
 
-class robot_class : public IterativeRobot
+class main_robot : public IterativeRobot
 {
-    public:
-        robot_class();
-        ~robot_class();
-        
-        void RobotInit();
-        void DisabledInit();
-        void AutonomousInit();
-        void TeleopInit();
-        void TestInit();
-        
-        void DisabledPeriodic();
-        void AutonomousPeriodic();
-        void TeleopPeriodic();
-        void TestPeriodic();
-        
-        DigitalInput* Switch1;
-        Relay* compressor;
+public:
+    main_robot();
+    ~main_robot();
+    void RobotInit();
+    void TeleopInit();
+    void AutonomousInit();
+    void TestInit();
+    void DisabledInit();
+    void TeleopPeriodic();
+    void AutonomousPeriodic();
+    void DisabledPeriodic();
+    void TestPeriodic();
+    DriveTrain* drive;
+    Joystick* driverJoy;
+    Joystick* gunnerJoy;
 };
 
-#endif MAIN_H
+#endif // MAIN_H

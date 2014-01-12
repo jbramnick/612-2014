@@ -1,67 +1,46 @@
 #include "main.h"
+#include <Joystick.h>
 
-robot_class::robot_class()
+main_robot::main_robot()
 {
-    switch1 = new DigitalInput(2, 2);
-    compressor = new Relay(2, 2, kBothDirections);
 }
 
-robot_class::~robot_class()
+void main_robot::RobotInit()
 {
-    delete switch1;
-    delete compressor;
+    driverJoy = new Joystick(1);
+    gunnerJoy = new Joystick(2);
 }
-
-void robot_class::RobotInit()
+void main_robot::TeleopInit()
 {
     
 }
-
-void robot_class::DisabledInit()
+void main_robot::AutonomousInit()
 {
     
 }
-
-void robot_class::AutonomousInit()
+void main_robot::TestInit()
 {
     
 }
-
-void robot_class::TeleopInit()
+void main_robot::DisabledInit()
 {
     
 }
-
-void robot_class::TestInit()
+void main_robot::TeleopPeriodic()
 {
-    compressor -> Set(kOn);
+    float left = driverJoy->GetRawAxis(2);
+    float right = driverJoy->GetRawAxis(5);
+    // drive->TankDrive(left, right);
 }
-
-void robot_class::DisabledPeriodic()
-{
-    
-}
-
-void robot_class::AutonomousPeriodic()
+void main_robot::AutonomousPeriodic()
 {
     
 }
-
-void robot_class::TeleopPeriodic()
+void main_robot::DisabledPeriodic()
 {
-
+    
 }
-
-void robot_class::TestPeriodic()
+void main_robot::TestPeriodic()
 {
-    if (switch1->Get() == 1)
-    {
-        compressor -> Set(kForward);
-    }
-    if (switch1->Get() == 0)
-    {
-        compressor -> Set(kOff);
-    }
+    
 }
-
-START_ROBOT_CLASS(robot_class);
