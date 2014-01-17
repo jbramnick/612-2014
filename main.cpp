@@ -1,67 +1,47 @@
 #include "main.h"
+#include <DigitalInput.h>
+#include <Relay.h>
+#include <Joystick.h>
 
-robot_class::robot_class()
-{
-    switch1 = new DigitalInput(2, 2);
-    compressor = new Relay(2, 2, kBothDirections);
-}
-
-robot_class::~robot_class()
-{
-    delete switch1;
-    delete compressor;
-}
-
-void robot_class::RobotInit()
-{
-    
-}
-
-void robot_class::DisabledInit()
-{
-    
-}
-
-void robot_class::AutonomousInit()
-{
-    
-}
-
-void robot_class::TeleopInit()
-{
-    
-}
-
-void robot_class::TestInit()
-{
-    compressor -> Set(kOn);
-}
-
-void robot_class::DisabledPeriodic()
-{
-    
-}
-
-void robot_class::AutonomousPeriodic()
-{
-    
-}
-
-void robot_class::TeleopPeriodic()
+main_robot::main_robot()
 {
 
 }
 
-void robot_class::TestPeriodic()
+void main_robot::RobotInit()
 {
-    if (switch1->Get() == 1)
-    {
-        compressor -> Set(kForward);
-    }
-    if (switch1->Get() == 0)
-    {
-        compressor -> Set(kOff);
-    }
+    driverJoy = new Joystick(1);
+    gunnerJoy = new Joystick(2);
+}
+void main_robot::TeleopInit()
+{
+
+}
+void main_robot::AutonomousInit()
+{
+
+}
+void main_robot::TestInit()
+{
+
+}
+void main_robot::DisabledInit()
+{
+
+}
+void main_robot::TeleopPeriodic()
+{
+    //float left = driverJoy->GetRawAxis(2);
+    //float right = driverJoy->GetRawAxis(5);
+    // drive->TankDrive(left, right);
 }
 
-START_ROBOT_CLASS(robot_class);
+void main_robot::DisabledPeriodic()
+{
+
+}
+void main_robot::TestPeriodic()
+{
+
+}
+
