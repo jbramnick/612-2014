@@ -11,7 +11,7 @@ Class Drivetrain()
 		void control_left2_talons();
 		void control_right2_talons();
 		void configure_low_gear();
-		void confidure_high_gear();
+		void configure_high_gear();
 
 		//shitfer servos
 		Servo shifter1;

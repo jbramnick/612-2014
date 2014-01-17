@@ -9,7 +9,7 @@ class Shifter
     void shift();
     void forwards();
     void backwards();
-    DoubleSolenoid* shifter();
+    DoubleSolenoid* shifter;
 }
 
 #endif // SHIFTER_H_INCLUDED
