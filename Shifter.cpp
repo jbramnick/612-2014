@@ -8,7 +8,7 @@ Shifter::Shifter()
 
 Shifter::~Shifter()
 {
-    delete gear;
+    delete shifter;
     //TODO
 }
 

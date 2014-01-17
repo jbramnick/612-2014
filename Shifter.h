@@ -4,6 +4,7 @@
 
 class Shifter
 {
+public:
     Shifter();
     ~Shifter();
     void shiftGear();
