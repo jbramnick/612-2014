@@ -4,7 +4,7 @@ Shifter::Shifter()
 {
     gear = low;
     //TODO
-};
+}
 
 Shifter::~Shifter()
 {

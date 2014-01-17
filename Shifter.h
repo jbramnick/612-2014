@@ -13,7 +13,7 @@ public:
     DoubleSolenoid* shifter;
     enum Gear {high,low};
     Gear gear;
-}
+};
 
 
 #endif // SHIFTER_H_INCLUDED
