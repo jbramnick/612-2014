@@ -1,6 +1,7 @@
 #include "main.h"
 #include <RobotDrive.h>
 #include <Talon.h>
+#include <EncodeDistance.h>
 
 DriveTrain::DriveTrain(uint8_t modFL,uint32_t chanFL,
                        uint8_t modRL,uint32_t chanRL,
