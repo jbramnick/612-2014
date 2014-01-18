@@ -5,7 +5,7 @@
 #include <Joystick.h>
 #include "DriveTrain.h"
 
-class main_robot : public IterativeRobot
+class main_robot:public IterativeRobot
 {
 public:
     main_robot();
@@ -25,3 +25,4 @@ public:
 };
 
 #endif // MAIN_H
+
