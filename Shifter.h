@@ -4,12 +4,16 @@
 
 class Shifter
 {
+public:
     Shifter();
     ~Shifter();
-    void shift();
+    void shiftGear();
     void forwards();
     void backwards();
-    DoubleSolenoid* shifter();
-}
+    DoubleSolenoid* shifter;
+    enum Gear {high,low};
+    Gear gear;
+};
+
 
 #endif // SHIFTER_H_INCLUDED

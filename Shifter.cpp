@@ -2,26 +2,34 @@
 
 Shifter::Shifter()
 {
-    shifter->Set(0)
+    gear = low;
     //TODO
 }
 
 Shifter::~Shifter()
 {
+    delete shifter;
     //TODO
 }
 
-void Shifter::shift()
+void Shifter::shiftGear()
 {
-
+    if(gear == low)
+    {
+        gear = high;
+    }
+    else if(gear == high)
+    {
+        gear = low;
+    }
 }
 
-void Shifter::fowards()
+void Shifter::forwards()
 {
-    shifter->Set(1);
+    shifter->Set(DoubleSolenoid::kForward);
 }
 
 void Shifter::backwards()
 {
-    shifter->Set(-1);
+    shifter->Set(DoubleSolenoid::kReverse);
 }
