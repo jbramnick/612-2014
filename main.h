@@ -7,8 +7,7 @@
 #include <DigitalInput.h>
 #include <Relay.h>
 
-
-class main_robot : public IterativeRobot
+class main_robot: public IterativeRobot
 {
 public:
     main_robot();
@@ -28,4 +27,4 @@ private:
     Joystick* gunnerJoy;
 };
 
-#endif
+#endif // MAIN_H
