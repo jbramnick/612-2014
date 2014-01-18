@@ -1,26 +1,49 @@
+#include <vector>
 #include <IterativeRobot.h>
-#include "DriveTrain.h"
 #include <DigitalInput.h>
 #include <Relay.h>
+#include <Timer.h>
+#include <DoubleSolenoid.h>
 #include "Pneumatics.h"
-/*#include <EasterEgg.h>*/
+#include "DriveTrain.h"
 
-void pneumatics::definePnuematics()
+
+Pneumatics::Pneumatics(uint8_t digitalMod, uint32_t digitalChannel,
+                        uint8_t compModuleNumber, uint32_t compChannel)
 {
-    switchObject = new DigitalInput(1, 1);
-    compressor = new Relay(1, 1, Relay::kForwardOnly);
+    switchObject = new DigitalInput(digitalMod, digitalChannel);
+    compressor = new Relay(compModuleNumber, compChannel, Relay::kForwardOnly);
+    solenoidTimer = new Timer();
 }
 
-void pneumatics::checkPressure()
+void Pneumatics::checkPressure()
 {
-    if(switchObject->DigitalInput::Get() == 1)
+    if(switchObject->Get() == 1)
     {
         compressor->Set(Relay::kForward);
-
     }
-
-    if(switchObject->DigitalInput::Get() == 0)
+    else
     {
         compressor->Set(Relay::kOff);
     }
+}
+
+void Pneumatics::updateSolenoid()
+{
+    //This function checks if the solenoid has expired
+    for(int i = 0; i < (int)time.size(); i++)
+    {
+        if(timerObject[i]->Get() >= time[i])
+        {
+            solenoid[i]->Set(DoubleSolenoid::kOff);
+            //next, remove from vector
+        }
+    }
+}
+
+void Pneumatics::setVectorValues(double timerValues, DoubleSolenoid* startSolenoid, Timer* foo)
+{
+    solenoidTimer = new Timer();
+    time.push_back(timerValues);
+    solenoid.push_back(startSolenoid);
 }
