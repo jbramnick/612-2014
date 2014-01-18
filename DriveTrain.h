@@ -2,7 +2,7 @@
 #define DRIVETRAIN_H
 
 #include <RobotDrive.h>
-#include <EncodeDistance.h>
+#include "EncodeDistance.h"
 
 class DriveTrain:public RobotDrive
 {
@@ -15,7 +15,8 @@ public:
     void autoTurn(float degrees);
     void teleDrive(/*some variable*/);
     void teleTurn(/*some variable*/);
-    EncodeDistance encode;
+private:
+    EncodeDistance* encode;
 };
 
 #endif // DRIVETRAIN_H
