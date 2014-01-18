@@ -2,13 +2,16 @@
 
 Shifter::Shifter()
 {
-    gear = low;
+    gear = high;
+    shifterL->Set(DoubleSolenoid::kForward);
+    shifterR->Set(DoubleSolenoid::kForward);
     //TODO
 }
 
 Shifter::~Shifter()
 {
-    delete shifter;
+    delete shifterL;
+    delete shifterR;
     //TODO
 }
 
@@ -17,19 +20,23 @@ void Shifter::shiftGear()
     if(gear == low)
     {
         gear = high;
+        setHigh();
     }
     else if(gear == high)
     {
         gear = low;
+        setLow();
     }
 }
 
 void Shifter::forwards()
 {
-    shifter->Set(DoubleSolenoid::kForward);
+    shifterL->Set(DoubleSolenoid::kForward);
+    shifterR->Set(DoubleSolenoid::kForward);
 }
 
 void Shifter::backwards()
 {
-    shifter->Set(DoubleSolenoid::kReverse);
+    shifterL->Set(DoubleSolenoid::kOff);
+    shifterR->Set(DoubleSolenoid::kOff);
 }

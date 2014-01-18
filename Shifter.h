@@ -8,9 +8,10 @@ public:
     Shifter();
     ~Shifter();
     void shiftGear();
-    void forwards();
-    void backwards();
-    DoubleSolenoid* shifter;
+    void setHigh();
+    void setLow();
+    DoubleSolenoid* shifterL;
+    DoubleSolenoid* shifterR;
     enum Gear {high,low};
     Gear gear;
 };

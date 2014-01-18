@@ -11,6 +11,7 @@ DriveTrain::DriveTrain(uint8_t modFL,uint32_t chanFL,
                        new Talon(modFR,chanFR),
                        new Talon(modRR,chanRR))
 {
+    //TODO
 }
 
 DriveTrain::~DriveTrain()
