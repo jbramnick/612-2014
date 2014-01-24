@@ -13,7 +13,6 @@ Pneumatics::Pneumatics(uint8_t digitalMod, uint32_t digitalChannel,
 {
     switchObject = new DigitalInput(digitalMod, digitalChannel);
     compressor = new Relay(compModuleNumber, compChannel, Relay::kForwardOnly);
-    solenoidTimer = new Timer();
 }
 
 void Pneumatics::checkPressure()
@@ -41,9 +40,12 @@ void Pneumatics::updateSolenoid()
     }
 }
 
-void Pneumatics::setVectorValues(double timerValues, DoubleSolenoid* startSolenoid, Timer* foo)
+void Pneumatics::setVectorValues(double timerValues, DoubleSolenoid* startSolenoid, DoubleSolenoid::Value value)
 {
-    solenoidTimer = new Timer();
+    Timer* solenoidTimer = new Timer();
     time.push_back(timerValues);
+    timerObject.push_back(solenoidTimer);
     solenoid.push_back(startSolenoid);
+    startSolenoid->Set(value);
+    solenoidTimer->Start();
 }
