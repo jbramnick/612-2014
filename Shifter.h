@@ -1,6 +1,8 @@
 #ifndef SHIFTER_H_INCLUDED
 #define SHIFTER_H_INCLUDED
-#include "DoubleSolenoid.h"
+#include <DoubleSolenoid.h>
+#include <Timer.h>
+#include "Pneumatics.h"
 
 class Shifter
 {
@@ -12,8 +14,10 @@ public:
     void setLow();
     DoubleSolenoid* shifterL;
     DoubleSolenoid* shifterR;
+    Pneumatics* pneumatics;
     enum Gear {high,low};
     Gear gear;
+    const static double time = 0.1;
 };
 
 
