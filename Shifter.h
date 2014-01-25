@@ -7,7 +7,7 @@
 class Shifter
 {
 public:
-    Shifter(uint8_t mod,uint32_t chan);
+    Shifter(uint8_t modR,uint32_t chanR,uint8_t modL,uint32_t chanL);
     ~Shifter();
     void shiftGear();
     void setHigh();
