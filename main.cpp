@@ -12,6 +12,8 @@ void main_robot::RobotInit()
 {
     driverJoy = new Joystick(1);
     gunnerJoy = new Joystick(2);
+    pnum = new Pneumatics(1,8,1,8); // TODO Placeholder for the ports
+    shift = 
 }
 void main_robot::TeleopInit()
 {
@@ -42,6 +44,15 @@ void main_robot::DisabledPeriodic()
 }
 void main_robot::TestPeriodic()
 {
-
+    pnum->checkPressure();
+    pnum->updateSolenoid();
+    if(gunnerJoy->GetRawButton(5))
+    {
+        //shift->setLow();
+    }
+    else if(gunnerJoy->GetRawButton(6))
+    {
+        //shift->setHigh();
+    }
 }
 
