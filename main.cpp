@@ -71,3 +71,4 @@ void main_robot::TestPeriodic()
     }
 }
 
+START_ROBOT_CLASS(main_robot)
