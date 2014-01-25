@@ -13,7 +13,8 @@ void main_robot::RobotInit()
     driverJoy = new Joystick(1);
     gunnerJoy = new Joystick(2);
     pnum = new Pneumatics(1,8,1,8); // TODO Placeholder for the ports
-    shift = 
+    shift = new Shifter(1,7,8);
+    shift->setHigh();
 }
 void main_robot::TeleopInit()
 {
@@ -29,7 +30,7 @@ void main_robot::TestInit()
 }
 void main_robot::DisabledInit()
 {
-
+    
 }
 void main_robot::TeleopPeriodic()
 {
