@@ -13,7 +13,6 @@ Pneumatics::Pneumatics(uint8_t digitalMod, uint32_t digitalChannel,
 {
     switchObject = new DigitalInput(digitalMod, digitalChannel);
     compressor = new Relay(compModuleNumber, compChannel, Relay::kForwardOnly);
-    solenoidTimer = new Timer();
 }
 
 void Pneumatics::checkPressure()
@@ -31,19 +30,28 @@ void Pneumatics::checkPressure()
 void Pneumatics::updateSolenoid()
 {
     //This function checks if the solenoid has expired
-    for(int i = 0; i < (int)time.size(); i++)
+    for(unsigned int i = 0; i < time.size();)
     {
         if(timerObject[i]->Get() >= time[i])
         {
             solenoid[i]->Set(DoubleSolenoid::kOff);
-            //next, remove from vector
+            solenoid.erase(solenoid.begin()+i);
+            time.erase(time.begin()+i);
+            timerObject.erase(timerObject.begin()+i);
+        }
+        else
+        {
+            i++;
         }
     }
 }
 
-void Pneumatics::setVectorValues(double timerValues, DoubleSolenoid* startSolenoid, Timer* foo)
+void Pneumatics::setVectorValues(double timerValues, DoubleSolenoid* startSolenoid, DoubleSolenoid::Value value)
 {
-    solenoidTimer = new Timer();
+    Timer* solenoidTimer = new Timer();
     time.push_back(timerValues);
+    timerObject.push_back(solenoidTimer);
     solenoid.push_back(startSolenoid);
+    startSolenoid->Set(value);
+    solenoidTimer->Start();
 }

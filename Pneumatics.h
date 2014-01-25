@@ -16,12 +16,11 @@ class Pneumatics
         Pneumatics(uint8_t digitalMod, uint32_t digitalChannel,
                    uint8_t compModuleNumber, uint32_t compChannel);
         void checkPressure();
-        void setVectorValues(double timerValues, DoubleSolenoid* startSolenoid, Timer* foo);
+        void setVectorValues(double timerValues, DoubleSolenoid* startSolenoid, DoubleSolenoid::Value value);
         void updateSolenoid();
     private:
         DigitalInput* switchObject;
         Relay* compressor;
-        Timer* solenoidTimer;
         std::vector<double> time;
         std::vector<Timer*> timerObject;
         std::vector<DoubleSolenoid*> solenoid;
