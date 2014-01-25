@@ -30,12 +30,18 @@ void Pneumatics::checkPressure()
 void Pneumatics::updateSolenoid()
 {
     //This function checks if the solenoid has expired
-    for(int i = 0; i < (int)time.size(); i++)
+    for(unsigned int i = 0; i < time.size();)
     {
         if(timerObject[i]->Get() >= time[i])
         {
             solenoid[i]->Set(DoubleSolenoid::kOff);
-            //next, remove from vector
+            solenoid.erase(solenoid.begin()+i);
+            time.erase(time.begin()+i);
+            timerObject.erase(timerObject.begin()+i);
+        }
+        else
+        {
+            i++;
         }
     }
 }

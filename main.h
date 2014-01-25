@@ -6,6 +6,8 @@
 #include "DriveTrain.h"
 #include <DigitalInput.h>
 #include <Relay.h>
+#include "Pneumatics.h"
+#include "Shifter.h"
 
 class main_robot: public IterativeRobot
 {
@@ -21,10 +23,12 @@ public:
     void AutonomousPeriodic();
     void DisabledPeriodic();
     void TestPeriodic();
-private:
-    DriveTrain* drive;
     Joystick* driverJoy;
     Joystick* gunnerJoy;
+    Pneumatics* pnum;
+    Shifter* shift;
+private:
+    DriveTrain* drive;
 };
 
 #endif // MAIN_H
