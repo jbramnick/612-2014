@@ -49,11 +49,17 @@ void main_robot::TestPeriodic()
     pnum->updateSolenoid();
     if(gunnerJoy->GetRawButton(5))
     {
-        //shift->setLow();
+        if(shift->gear!=Shifter::low)
+        {
+            shift->setLow();
+        }
     }
     else if(gunnerJoy->GetRawButton(6))
     {
-        //shift->setHigh();
+        if(shift->gear!=Shifter::high)
+        {
+            shift->setHigh();
+        }
     }
 }
 
