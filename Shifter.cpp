@@ -2,13 +2,14 @@
 
 Shifter::Shifter()
 {
-    gear = low;
+    gear = high;
     //TODO
 }
 
 Shifter::~Shifter()
 {
-    delete shifter;
+    delete shifterL;
+    delete shifterR;
     //TODO
 }
 
@@ -17,19 +18,23 @@ void Shifter::shiftGear()
     if(gear == low)
     {
         gear = high;
+        setHigh();
     }
     else if(gear == high)
     {
         gear = low;
+        setLow();
     }
 }
 
-void Shifter::forwards()
+void Shifter::setHigh()
 {
-    shifter->Set(DoubleSolenoid::kForward);
+    pneumatics->setVectorValues(time, shifterL, DoubleSolenoid::kForward);
+    pneumatics->setVectorValues(time, shifterR, DoubleSolenoid::kForward);
 }
 
-void Shifter::backwards()
+void Shifter::setLow()
 {
-    shifter->Set(DoubleSolenoid::kReverse);
+    pneumatics->setVectorValues(time, shifterL, DoubleSolenoid::kReverse);
+    pneumatics->setVectorValues(time, shifterR, DoubleSolenoid::kReverse);
 }
