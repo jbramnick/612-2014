@@ -19,11 +19,11 @@ void Pneumatics::checkPressure()
 {
     if(switchObject->Get() == 1)
     {
-        compressor->Set(Relay::kForward);
+        compressor->Set(Relay::kOff);
     }
     else
     {
-        compressor->Set(Relay::kOff);
+        compressor->Set(Relay::kForward);
     }
 }
 

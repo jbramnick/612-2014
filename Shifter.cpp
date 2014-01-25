@@ -1,4 +1,6 @@
 #include "Shifter.h"
+#include "612.h"
+#include "main.h"
 
 Shifter::Shifter(uint8_t mod,uint32_t chanF,uint32_t chanR)
 {
@@ -29,11 +31,11 @@ void Shifter::shiftGear()
 void Shifter::setHigh()
 {
     gear=high;
-    pneumatics->setVectorValues(TIME, shifter, DoubleSolenoid::kForward);
+    robot->pnum->setVectorValues(TIME, shifter, DoubleSolenoid::kForward);
 }
 
 void Shifter::setLow()
 {
     gear=low;
-    pneumatics->setVectorValues(TIME, shifter, DoubleSolenoid::kReverse);
+    robot->pnum->setVectorValues(TIME, shifter, DoubleSolenoid::kReverse);
 }
