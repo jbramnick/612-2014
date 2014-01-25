@@ -7,7 +7,7 @@
 class Shifter
 {
 public:
-    Shifter();
+    Shifter(uint8_t modR,uint32_t chanR,uint8_t modL,uint32_t chanL);
     ~Shifter();
     void shiftGear();
     void setHigh();
@@ -17,7 +17,7 @@ public:
     Pneumatics* pneumatics;
     enum Gear {high,low};
     Gear gear;
-    const static double time = 0.1;
+    const static double TIME= 0.1;
 };
 
 
