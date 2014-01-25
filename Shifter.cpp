@@ -1,8 +1,10 @@
 #include "Shifter.h"
 
-Shifter::Shifter()
+Shifter::Shifter(uint8_t modR,uint32_t chanR,uint8_t modL,uint32_t chanL)
 {
-    gear = high;
+    shifterL=new DoubleSolenoid(modL,chanL);
+    shifterR=new DoubleSolenoid(modR,chanR);
+    
     //TODO
 }
 
@@ -17,24 +19,26 @@ void Shifter::shiftGear()
 {
     if(gear == low)
     {
-        gear = high;
+        
         setHigh();
     }
     else if(gear == high)
     {
-        gear = low;
+        
         setLow();
     }
 }
 
 void Shifter::setHigh()
 {
-    pneumatics->setVectorValues(time, shifterL, DoubleSolenoid::kForward);
-    pneumatics->setVectorValues(time, shifterR, DoubleSolenoid::kForward);
+    gear=high;
+    pneumatics->setVectorValues(TIME, shifterL, DoubleSolenoid::kForward);
+    pneumatics->setVectorValues(TIME, shifterR, DoubleSolenoid::kForward);
 }
 
 void Shifter::setLow()
 {
-    pneumatics->setVectorValues(time, shifterL, DoubleSolenoid::kReverse);
-    pneumatics->setVectorValues(time, shifterR, DoubleSolenoid::kReverse);
+    gear=low;
+    pneumatics->setVectorValues(TIME, shifterL, DoubleSolenoid::kReverse);
+    pneumatics->setVectorValues(TIME, shifterR, DoubleSolenoid::kReverse);
 }
