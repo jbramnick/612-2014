@@ -19,3 +19,7 @@ Makefile
 PPC603gnu
 
 .directory
+
+.cproject
+.wrproject
+.project
