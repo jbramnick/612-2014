@@ -1,3 +1,4 @@
+/*
 #ifndef SHOOTER_H_INCLUDED
 #define SHOOTER_H_INCLUDED
 
@@ -24,3 +25,4 @@ public:
 };
 
 #endif // SHOOTER_H_INCLUDED
+*/

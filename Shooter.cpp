@@ -1,3 +1,4 @@
+/*
 #include Shooter.h
 
 Shooter::Shooter(uint8_t axisMod, ControlMode axisMode,
@@ -43,3 +44,4 @@ void Shooter::clamp(Clamp c)
     }
 
 }
+*/
