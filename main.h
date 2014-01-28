@@ -27,7 +27,6 @@ public:
     Joystick* gunnerJoy;
     Pneumatics* pnum;
     Shifter* shift;
-private:
     DriveTrain* drive;
 };
 
