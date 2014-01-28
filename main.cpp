@@ -17,13 +17,17 @@ void main_robot::RobotInit()
 {
     driverJoy = new Joystick(1);
     gunnerJoy = new Joystick(2);
-    pnum = new Pneumatics(1,8,1,8); // TODO Placeholder for the ports
-    shift = new Shifter(1,7,8);
-    shift->setHigh();
+    //pnum = new Pneumatics(1,8,1,8); // TODO Placeholder for the ports
+    //shift = new Shifter(1,7,8);
+    //shift->setHigh();
     drive = new DriveTrain(TALON_FL_MODULE, TALON_FL_CHANNEL,
                            TALON_RL_MODULE, TALON_RL_CHANNEL,
                            TALON_FR_MODULE, TALON_FR_CHANNEL,
                            TALON_RR_MODULE, TALON_RR_CHANNEL);
+}
+void main_robot::TeleopInit()
+{
+
 }
 void main_robot::AutonomousInit()
 {
