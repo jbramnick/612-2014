@@ -17,6 +17,9 @@
 .wrmakefile
 Makefile
 PPC603gnu
+.cproject
+.project
+.wrproject
 
 .directory
 
