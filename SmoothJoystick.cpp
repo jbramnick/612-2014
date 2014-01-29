@@ -4,40 +4,72 @@
 #include <bitset>
 //#include <EmperorKoch.h>
 
-void SmoothJoystick::addJoyFunctions(joyFunctions controlFunctions, joyfuncObjects controlObjects)
+SmoothJoystick::SmoothJoystick(uint32_t port): Joystick(port)
 {
-    Objects.push_back(controlFunctions);
-    joystickFuncs.push_back(controlObjects);
+    Button_number = 0;
+}
+
+void SmoothJoystick::addJoyFunctions(joyFunctions controlFunctions, joyfuncObjects controlObjects, functionBool called)
+{
+    Objects.push_back(controlObjects);
+    joystickFuncs.push_back(controlFunctions);
+    funcBools.push_back(called);
+
 }
 
 void SmoothJoystick::updateJoyFunctions()
 {
-    for(unsigned int k = 0; k < Objects.size(); j++)
+    for(unsigned int k = 0; k < funcBools.size(); k++)
     {
-        //in the format of f(object)
-        (joystickFuncs.at(k))(Objects.at(k));
+        /*in the format of f(object)
+        loop check to see if function was called before so that it runs once*/
+        if(funcBools.at(k))
+        {
+            (joystickFuncs.at(k))(Objects.at(k));
+        }
     }
 }
 
 void SmoothJoystick::addButtons()
 {
-    buttons.push_back(aButtonSet<3>(driverJoystick->GetRawButton(1)));
-    buttons.push_back(bButtonSet<3>(driverJoystick->GetRawButton(2)));
-    buttons.push_back(xButtonSet<3>(driverJoystick->GetRawButton(3)));
-    buttons.push_back(yButtonSet<4>(driverJoystick->GetRawButton(4)));
-    buttons.push_back(lbButtonSet<5>(driverJoystick->GetRawButton(5)));
-    buttons.push_back(rbButtonSet<6>(driverJoystick->GetRawButton(6)));
-    buttons.push_back(backButtonSet<7>(driverJoystick->GetRawButton(7)));
-    buttons.push_back(startButtonSet<8>(driverJoystick->GetRawButton(8)));
+    int m = 0;
+
+    std::bitset<3> newButton;
+
+    do
+    {
+        buttons.push_back(newButton);
+        m = m + 1;
+    }
+    while (m < amountOfButtons);//don't know where this goes :P
 }
 
-void SmoothJoystick::checkSmooth()
+bool SmoothJoystick::GetSmoothButton(int Button_number)
 {
-    for(unsigned int l = 0; l < buttons.size(); l++)
+    int value1 = (buttons.at(Button_number))[0];
+    int value2 = (buttons.at(Button_number))[1];
+    int value3 = (buttons.at(Button_number))[2];
+
+    if(value1 == 1 && value2 == 1 && value3 == 1)
     {
-        if((buttons.at(l)).all == 1)
-        {
-            joystickFuncs.at(l);
-        }
+        return true;
+    }
+    else
+    {
+        return  false;
     }
 }
+
+/*
+NOTICE: Joystick has not been created, thus I comment out this function
+
+
+void SmoothJoystick::buttonUpdate(int Button_number)
+//push the values down
+{
+    if(GetSmoothButton(Button_number))
+    {
+        (buttons.at(Button_number)).set(driverJoystick->GetRawButton(Button_number));
+    }
+}
+*/

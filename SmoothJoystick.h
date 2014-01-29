@@ -6,23 +6,32 @@
 #include <vector>
 #include <bitset>
 
-Joystick* driverJoystick;
-Joystick* gunnerJoystick;
 
-class SmoothJoystick
+class SmoothJoystick: public Joystick
 {
+private:
+    static const int amountOfButtons = 12;
 public:
+    SmoothJoystick(uint32_t port);
+    ~SmoothJoystick();
     typedef void* joyfuncObjects;
     typedef void(*joyFunctions)(joyfuncObjects);
+    typedef bool* functionBool;
     typedef void* btn_Obj;
     std::vector<joyfuncObjects> Objects;
     std::vector<joyFunctions> joystickFuncs;
-    std::vector<bitset> buttons[buttonNum];
+    std::vector<std::bitset<3> > buttons;
+    std::vector<bool> funcBools;
 
-    void addJoyFunctions(joyFunctions controlFunctions, joyfuncObjects controlObjects);
+    std::bitset<3> newButton;
+
+    static int Button_number;
+
+    void addJoyFunctions(joyFunctions controlFunctions, joyfuncObjects controlObjects, functionBool called);
     void updateJoyFunctions();
     void addButtons();
-    void checkSmooth();
+    void buttonUpdate(int Button_number);
+    bool GetSmoothButton(int Button_number);
 };
 
 #endif //SMOOTHJOYSTICK_H
