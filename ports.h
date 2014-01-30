@@ -33,6 +33,17 @@ const static uint32_t SHOOT_SLNOID_FCHAN  = 2;
 const static uint32_t SHOOT_SLNOID_RCHAN  = 3;
 const static uint8_t  SHOOT_SLNOID_MODULE = 1;
 
+// Encoder Modules
+const uint8_t  ENCODER_LMODULE_A  = 1;
+const uint8_t  ENCODER_RMODULE_A  = 2;
+const uint8_t  ENCODER_LMODULE_B  = 3;
+const uint8_t  ENCODER_RMODULE_B  = 4;
+// Encoder Channels
+const uint32_t ENCODER_LCHANNEL_A = 5;
+const uint32_t ENCODER_RCHANNEL_A = 6;
+const uint32_t ENCODER_LCHANNEL_B = 7;
+const uint32_t ENCODER_RCHANNEL_B = 8;
+
 // Joystick
 const uint32_t DRIVER_JOY_PORT = 1;
 const uint32_t GUNNER_JOY_PORT = 2;

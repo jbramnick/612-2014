@@ -16,16 +16,19 @@ Shooter::~Shooter()
     delete clamper;
 }
 
-void Shooter::pitch(bool direc)//true = up, false = down
+void Shooter::pitchUp()
 {
-    if(direc)
-    {
-        axis->Set(SPEED_AXISPOWER);
-    }
-    else
-    {
-        axis->Set(-SPEED_AXISPOWER);
-    }
+    axis->Set(SPEED_AXISPOWER);
+}
+
+void Shooter::pitchDown()
+{
+    axis->Set(-SPEED_AXISPOWER);
+}
+
+void Shooter::pitchStop()
+{
+    axis->Set(0);
 }
 
 void Shooter::pull()

@@ -16,7 +16,9 @@ public:
     ~Shooter();
     enum Clamp {down, up};
     Clamp clamp;
-    void pitch(bool direc);//moves it up and down
+    void pitchUp();
+    void pitchDown();
+    void pitchStop();
     void pull();//Wheel pulls ball
     void pullStop();
     void autoClamp();
