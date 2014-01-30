@@ -6,6 +6,12 @@
 
 SmoothJoystick::SmoothJoystick(uint32_t port): Joystick(port)
 {
+
+}
+
+SmoothJoystick::~SmoothJoystick()
+{
+
 }
 
 void SmoothJoystick::addJoyFunctions(joyFunctions controlFunctions, joyfuncObjects controlObjects, uint32_t btn)
