@@ -69,7 +69,7 @@ bool SmoothJoystick::GetSmoothButton(int Button_number)
     }
     else
     {
-        return  false;
+        return false;
     }
 }
 
@@ -81,5 +81,23 @@ void SmoothJoystick::buttonUpdate()
         btnSet->at(2) = btnSet->at(1);
         btnSet->at(1) = btnSet->at(0);
         btnSet->at(0) = GetRawButton(k);
+    }
+}
+
+double SmoothJoystick::isAxisZero(uint32_t axis)//accepts axis port, returns 1 or -1 if axis value is in the Trigger tolerance range
+{
+    double TRIGGER_TOLERANCE = 0.1;
+
+    if(((Joystick::GetRawAxis(axis)) < TRIGGER_TOLERANCE) && ((Joystick::GetRawAxis(axis)) > 0))
+    {
+        return TRIG_R;
+    }
+    else if(((Joystick::GetRawAxis(axis)) > -TRIGGER_TOLERANCE) && ((Joystick::GetRawAxis(axis)) < 0))
+    {
+        return TRIG_L;
+    }
+    else
+    {
+        return TRIG_NONE;
     }
 }
