@@ -23,10 +23,6 @@ public:
     std::vector<std::bitset<3> > buttons;
     std::vector<bool> funcBools;
 
-    std::bitset<3> newButton;
-
-    static int Button_number;
-
     void addJoyFunctions(joyFunctions controlFunctions, joyfuncObjects controlObjects, functionBool called);
     void updateJoyFunctions();
     void addButtons();
