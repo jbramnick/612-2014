@@ -20,17 +20,14 @@ public:
     typedef void* btn_Obj;
     std::vector<joyfuncObjects> Objects;
     std::vector<joyFunctions> joystickFuncs;
-    std::vector<std::bitset<3> > buttons;
+    std::vector<uint32_t> joyfuncButtons;
     std::vector<bool> funcBools;
+    std::vector<std::bitset<3>* > buttons;
 
-    std::bitset<3> newButton;
-
-    static int Button_number;
-
-    void addJoyFunctions(joyFunctions controlFunctions, joyfuncObjects controlObjects, functionBool called);
+    void addJoyFunctions(joyFunctions controlFunctions, joyfuncObjects controlObjects, uint32_t btn);
     void updateJoyFunctions();
     void addButtons();
-    void buttonUpdate(int Button_number);
+    void buttonUpdate();
     bool GetSmoothButton(int Button_number);
 };
 

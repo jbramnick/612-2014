@@ -6,15 +6,14 @@
 
 SmoothJoystick::SmoothJoystick(uint32_t port): Joystick(port)
 {
-    Button_number = 0;
 }
 
-void SmoothJoystick::addJoyFunctions(joyFunctions controlFunctions, joyfuncObjects controlObjects, functionBool called)
+void SmoothJoystick::addJoyFunctions(joyFunctions controlFunctions, joyfuncObjects controlObjects, uint32_t btn)
 {
     Objects.push_back(controlObjects);
     joystickFuncs.push_back(controlFunctions);
-    funcBools.push_back(called);
-
+    joyfuncButtons.push_back(btn);
+    funcBools.push_back(false);
 }
 
 void SmoothJoystick::updateJoyFunctions()
@@ -23,9 +22,17 @@ void SmoothJoystick::updateJoyFunctions()
     {
         /*in the format of f(object)
         loop check to see if function was called before so that it runs once*/
-        if(funcBools.at(k))
+        if(GetSmoothButton(joyfuncButtons.at(k)))
         {
-            (joystickFuncs.at(k))(Objects.at(k));
+            if(!funcBools.at(k))
+            {
+                (joystickFuncs.at(k))(Objects.at(k));
+                funcBools.at(k)=true;
+            }
+        }
+        else
+        {
+            funcBools.at(k)=false;
         }
     }
 }
@@ -34,7 +41,7 @@ void SmoothJoystick::addButtons()
 {
     int m = 0;
 
-    std::bitset<3> newButton;
+    std::bitset<3>* newButton = new std::bitset<3>();
 
     do
     {
@@ -46,9 +53,9 @@ void SmoothJoystick::addButtons()
 
 bool SmoothJoystick::GetSmoothButton(int Button_number)
 {
-    int value1 = (buttons.at(Button_number))[0];
-    int value2 = (buttons.at(Button_number))[1];
-    int value3 = (buttons.at(Button_number))[2];
+    int value1 = (buttons.at(Button_number))->at(0);
+    int value2 = (buttons.at(Button_number))->at(1);
+    int value3 = (buttons.at(Button_number))->at(2);
 
     if(value1 == 1 && value2 == 1 && value3 == 1)
     {
@@ -60,16 +67,13 @@ bool SmoothJoystick::GetSmoothButton(int Button_number)
     }
 }
 
-/*
-NOTICE: Joystick has not been created, thus I comment out this function
-
-
-void SmoothJoystick::buttonUpdate(int Button_number)
-//push the values down
+void SmoothJoystick::buttonUpdate()
 {
-    if(GetSmoothButton(Button_number))
+    for(int k = 0; k < amountOfButtons; k++)
     {
-        (buttons.at(Button_number)).set(driverJoystick->GetRawButton(Button_number));
+        std::bitset<3>* btnSet = buttons.at(k);
+        btnSet->at(2) = btnSet->at(1);
+        btnSet->at(1) = btnSet->at(0);
+        btnSet->at(0) = GetRawButton(k);
     }
 }
-*/
