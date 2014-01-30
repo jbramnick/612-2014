@@ -1,5 +1,5 @@
 #ifndef SMOOTHJOYSTICK_H
-#define SMOTHJOYSTICK_H
+#define SMOOTHJOYSTICK_H
 
 #include <Joystick.h>
 #include "controls.h"
@@ -29,6 +29,7 @@ public:
     void addButtons();
     void buttonUpdate();
     bool GetSmoothButton(int Button_number);
+    double isAxisZero(uint32_t axis);
 };
 
 #endif //SMOOTHJOYSTICK_H
