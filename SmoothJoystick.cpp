@@ -6,7 +6,12 @@
 
 SmoothJoystick::SmoothJoystick(uint32_t port): Joystick(port)
 {
-    Button_number = 0;
+
+}
+
+SmoothJoystick::~SmoothJoystick()
+{
+
 }
 
 void SmoothJoystick::addJoyFunctions(joyFunctions controlFunctions, joyfuncObjects controlObjects, functionBool called)
