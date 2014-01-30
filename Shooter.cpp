@@ -1,12 +1,12 @@
 #include "Shooter.h"
 
 Shooter::Shooter(uint8_t axisMod,
-                 uint8_t attractMod,
-                 uint8_t clampMod, uint32_t clampChan)
+                 uint8_t attractMod, uint32_t attractChan,
+                 uint8_t clampMod, uint32_t clampFChan, uint32_t clampRChan)
 {
     axis = new CANJaguar(axisMod);
-    attractor = new CANJaguar(attractMod);
-    clamper = new DoubleSolenoid(clampMod, clampChan);
+    attractor = new Talon(attractMod, attractChan);
+    clamper = new DoubleSolenoid(clampMod, clampFChan, clampRChan);
 }
 
 Shooter::~Shooter()
@@ -39,34 +39,28 @@ void Shooter::pullStop()
 }
 
 //@param goClamp moves clamper, off says to stop clamper
-void Shooter::autoClamp(bool goClamp, bool off)
+void Shooter::autoClamp()
 {
-    if(!off){
-        if(goClamp)
-        {
-            clampDown();
-        }
-        else
-        {
-            clampUp();
-        }
+    if(clamp == up)
+    {
+        clampDown();
     }
     else
     {
-        clamper -> Set(DoubleSolenoid::kOff);
+        clampUp();
     }
 }
 
 void Shooter::clampDown()
 {
-    clamper -> Set(DoubleSolenoid::kForward);
+    pneumatics->setVectorValues(TIME, clamper, DoubleSolenoid::kForward);
     pull();
     clamp = down;
 }
 
 void Shooter::clampUp()
 {
-    clamper -> Set(DoubleSolenoid::kReverse);
+    pneumatics->setVectorValues(TIME, clamper, DoubleSolenoid::kReverse);
     pullStop();
     clamp = up;
 }
