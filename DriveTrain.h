@@ -16,7 +16,7 @@ public:
     void autoTurn(double degrees);
     void teleTurn(Dir direction, double power);
     void update();
-    static void updateHelper(void* objPtr);
+    static void updateHelper(void* instName);
     EncodeDistance* encode;
     static bool isMoving;
     static bool leftHasDriven;
@@ -25,7 +25,7 @@ public:
     static const double NeededDegrees = 10;
     static const float SPEED = 1.0f;
     static double PI;
-    static const double ROBOTRAD = 1;   
+    static const double ROBOTRAD = 1;
     static double CIRCUMROBOT;
 };
 

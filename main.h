@@ -8,6 +8,7 @@
 #include <Relay.h>
 #include "Pneumatics.h"
 #include "Shifter.h"
+#include "FunctionRegistry.h"
 
 class main_robot: public IterativeRobot
 {
@@ -28,6 +29,7 @@ public:
     Pneumatics* pnum;
     Shifter* shift;
     DriveTrain* drive;
+    FunctionRegistry* update;
 };
 
 #endif // MAIN_H
