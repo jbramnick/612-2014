@@ -22,7 +22,6 @@ public:
     static bool isTurningL;
     static bool isTurningR;
     double NeededDist;
-    double NeededDegrees;
     static const float SPEED = 1.0f;
     static double PI;
     static const double ROBOTRAD = 1;
