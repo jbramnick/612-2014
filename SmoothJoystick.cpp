@@ -2,11 +2,15 @@
 #include "controls.h"
 #include <vector>
 #include <bitset>
+#include "612.h"
+#include "main.h"
+
 //#include <EmperorKoch.h>
 
 SmoothJoystick::SmoothJoystick(uint32_t port): Joystick(port)
 {
      TRIGGER_TOLERANCE = 0.1;
+     robot -> update -> addFunctions(&updateHelper, (void*)this);
 }
 
 SmoothJoystick::~SmoothJoystick()
@@ -106,4 +110,11 @@ double SmoothJoystick::isAxisZero(uint32_t axis)//accepts axis port, returns 1 o
     {
         return TRIG_NONE;
     }
+}
+
+void SmoothJoystick::updateHelper(void* instName)
+{
+    SmoothJoystick* smoothObj = (SmoothJoystick*)instName;
+    smoothObj -> updateJoyFunctions();
+    smoothObj -> buttonUpdate();
 }

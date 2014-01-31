@@ -9,7 +9,6 @@
 #include <DoubleSolenoid.h>
 #include "DriveTrain.h"
 
-
 class Pneumatics
 {
     public:
@@ -18,6 +17,7 @@ class Pneumatics
         void checkPressure();
         void setVectorValues(double timerValues, DoubleSolenoid* startSolenoid, DoubleSolenoid::Value value);
         void updateSolenoid();
+        static void UpdateHelper(void* instName);
     private:
         DigitalInput* switchObject;
         Relay* compressor;

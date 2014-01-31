@@ -31,6 +31,7 @@ public:
     void buttonUpdate();
     bool GetSmoothButton(int Button_number);
     double isAxisZero(uint32_t axis);
+    static void updateHelper(void* instName);
 };
 
 #endif //SMOOTHJOYSTICK_H
