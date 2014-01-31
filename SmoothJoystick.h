@@ -11,6 +11,7 @@ class SmoothJoystick: public Joystick
 {
 private:
     static const int amountOfButtons = 12;
+    double TRIGGER_TOLERANCE;
 public:
     SmoothJoystick(uint32_t port);
     ~SmoothJoystick();
