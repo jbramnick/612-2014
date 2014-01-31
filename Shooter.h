@@ -32,6 +32,7 @@ public:
     const static float SPEED_AXISPOWER = 0.5f;
     const static float SPEED_ATTRACTOR = 0.5f;
     const static double TIME = 0.1;
+    static void buttonHelper(void* objPtr, uint8_t button);
 };
 
 #endif // SHOOTER_H_INCLUDED
