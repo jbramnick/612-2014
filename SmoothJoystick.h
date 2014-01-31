@@ -11,6 +11,7 @@ class SmoothJoystick: public Joystick
 {
 private:
     static const int amountOfButtons = 12;
+    double TRIGGER_TOLERANCE;
 public:
     SmoothJoystick(uint32_t port);
     ~SmoothJoystick();
@@ -30,6 +31,7 @@ public:
     void buttonUpdate();
     bool GetSmoothButton(int Button_number);
     double isAxisZero(uint32_t axis);
+    static void updateHelper(void* instName);
 };
 
 #endif //SMOOTHJOYSTICK_H

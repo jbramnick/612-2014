@@ -1,5 +1,8 @@
 #include "DriveTrain.h"
 #include <Talon.h>
+#include "612.h"
+#include "main.h"
+
 double DriveTrain::PI = 3.141592653;
 double DriveTrain::CIRCUMROBOT = 2 * PI * ROBOTRAD;
 bool DriveTrain::isMovingL = false;
@@ -20,6 +23,10 @@ DriveTrain::DriveTrain(uint8_t modFL,uint32_t chanFL,
                                 ENCODER_LMODULE_B, ENCODER_LCHANNEL_B,
                                 ENCODER_RMODULE_A, ENCODER_RCHANNEL_A,
                                 ENCODER_RMODULE_B, ENCODER_RCHANNEL_B);
+<<<<<<< HEAD
+=======
+    robot -> update -> addFunctions(&updateHelper, (void*) this);
+>>>>>>> f66df8dbfd12da698161252455afe2c7a5b9a21e
 }
 
 DriveTrain::~DriveTrain()
@@ -40,6 +47,7 @@ void DriveTrain::autoTurn(double degrees)                         // any degrees
 {
     double degrees2Radians = degrees * (PI/180);
     double arcLength = CIRCUMROBOT * (degrees2Radians/(2 * PI));  // checks the length of the arc in feet
+<<<<<<< HEAD
     NeededDist = arcLength;
     if (degrees > 0){
         TankDrive(-SPEED, SPEED);
@@ -48,6 +56,37 @@ void DriveTrain::autoTurn(double degrees)                         // any degrees
     if (degrees < 0){
         TankDrive(SPEED, -SPEED);
         isTurningR = true;
+=======
+    if (degrees == 0)
+    {
+        encode->EncoderL->Stop();
+        encode->EncoderR->Stop();
+        TankDrive(0.0f,0.0f);
+    }
+    if (degrees < 0)
+    {
+        encode->EncoderL->Start();
+        encode->EncoderR->Start();
+        TankDrive(SPEED, -SPEED);
+        if ((encode->getRDistance() >= arcLength))
+        {
+            encode->EncoderL->Stop();
+            encode->EncoderR->Stop();
+            TankDrive(0.0f,0.0f);
+        }
+    }
+    else if (degrees > 0)
+    {
+        encode->EncoderL->Start();
+        encode->EncoderR->Start();
+        TankDrive(-SPEED, SPEED);
+        if ((encode->getLDistance() >= arcLength))
+        {
+            encode->EncoderL->Stop();
+            encode->EncoderR->Stop();
+            TankDrive(0.0f,0.0f);
+        }
+>>>>>>> f66df8dbfd12da698161252455afe2c7a5b9a21e
     }
     encode->EncoderL->Start();
     encode->EncoderR->Start();
@@ -111,7 +150,11 @@ void DriveTrain::update()
         isTurningL = false;
         TankDrive(-speedL, speedR);
     }
+<<<<<<< HEAD
     if (isTurningR)  // NeededDist is negative 
+=======
+    else
+>>>>>>> f66df8dbfd12da698161252455afe2c7a5b9a21e
     {
         speedL = SPEED;
         if (encode->getLDistance() >= -NeededDist)
@@ -132,10 +175,14 @@ void DriveTrain::update()
     }
 }
 
+<<<<<<< HEAD
 
 void DriveTrain::updateHelper(void* objPtr)
+=======
+void DriveTrain::updateHelper(void* instName)
+>>>>>>> f66df8dbfd12da698161252455afe2c7a5b9a21e
 {
-    DriveTrain* driveObj = (DriveTrain*)objPtr;
+    DriveTrain* driveObj = (DriveTrain*)instName;
     driveObj->update();
 }
 
