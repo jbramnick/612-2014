@@ -1,7 +1,6 @@
 #ifndef PORTS_H
 #define PORTS_H
 
-#include <stdint.h>
 
 // DriveTrain Channels
 const static uint32_t TALON_FL_CHANNEL = 0;
