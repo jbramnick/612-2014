@@ -40,7 +40,7 @@ void DriveTrain::autoTurn(double degrees)
 {
     double degrees2Radians = degrees * (PI/180);
     double arcLength = CIRCUMROBOT * (degrees2Radians/(2 * PI));  // checks the length of the arc in feet
-    NeededDegrees = arcLength;
+    NeededDist = arcLength;
     if (degrees > 0){
         TankDrive(-SPEED, SPEED);
         isTurningL = true;
@@ -92,7 +92,7 @@ void DriveTrain::update()
     if (isTurningL || isTurningR)
     {
         speedL = SPEED;
-        if (encode->getLDistance() >= NeededDegrees)
+        if (encode->getLDistance() >= NeededDist)
         {
             encode->EncoderL->Stop();
             encode->EncoderL->Reset();
@@ -100,7 +100,7 @@ void DriveTrain::update()
             speedL = 0.0f;
         }
         speedR == SPEED;
-        if (encode->getRDistance() >= -NeededDegrees)
+        if (encode->getRDistance() >= -NeededDist)
         {
             encode->EncoderR->Stop();
             encode->EncoderR->Reset();
