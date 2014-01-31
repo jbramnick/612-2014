@@ -1,5 +1,8 @@
 #include "DriveTrain.h"
 #include <Talon.h>
+#include "612.h"
+#include "main.h"
+
 double DriveTrain::PI = 3.141592653;
 double DriveTrain::CIRCUMROBOT = 2 * PI * ROBOTRAD;
 bool DriveTrain::isMovingL = false;
@@ -20,6 +23,7 @@ DriveTrain::DriveTrain(uint8_t modFL,uint32_t chanFL,
                                 ENCODER_LMODULE_B, ENCODER_LCHANNEL_B,
                                 ENCODER_RMODULE_A, ENCODER_RCHANNEL_A,
                                 ENCODER_RMODULE_B, ENCODER_RCHANNEL_B);
+    robot -> update -> addFunctions(&updateHelper, (void*) this);
 }
 
 DriveTrain::~DriveTrain()
@@ -99,7 +103,7 @@ void DriveTrain::update()
             isTurningL = false;
             speedL = 0.0f;
         }
-        speedR == SPEED;
+        speedR = SPEED;
         if (encode->getRDistance() >= -NeededDist)
         {
             encode->EncoderR->Stop();
@@ -118,9 +122,9 @@ void DriveTrain::update()
     }
 }
 
-void DriveTrain::updateHelper(void* objPtr)
+void DriveTrain::updateHelper(void* instName)
 {
-    DriveTrain* driveObj = (DriveTrain*)objPtr;
+    DriveTrain* driveObj = (DriveTrain*)instName;
     driveObj->update();
 }
 

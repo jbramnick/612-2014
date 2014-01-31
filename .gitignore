@@ -22,3 +22,7 @@ PPC603gnu
 .wrproject
 
 .directory
+
+.cproject
+.wrproject
+.project

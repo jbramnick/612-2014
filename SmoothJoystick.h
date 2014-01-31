@@ -1,5 +1,5 @@
 #ifndef SMOOTHJOYSTICK_H
-#define SMOTHJOYSTICK_H
+#define SMOOTHJOYSTICK_H
 
 #include <Joystick.h>
 #include "controls.h"
@@ -11,6 +11,7 @@ class SmoothJoystick: public Joystick
 {
 private:
     static const int amountOfButtons = 12;
+    double TRIGGER_TOLERANCE;
 public:
     SmoothJoystick(uint32_t port);
     ~SmoothJoystick();
@@ -20,18 +21,17 @@ public:
     typedef void* btn_Obj;
     std::vector<joyfuncObjects> Objects;
     std::vector<joyFunctions> joystickFuncs;
-    std::vector<std::bitset<3> > buttons;
+    std::vector<uint32_t> joyfuncButtons;
     std::vector<bool> funcBools;
+    std::vector<std::bitset<3>* > buttons;
 
-    std::bitset<3> newButton;
-
-    static int Button_number;
-
-    void addJoyFunctions(joyFunctions controlFunctions, joyfuncObjects controlObjects, functionBool called);
+    void addJoyFunctions(joyFunctions controlFunctions, joyfuncObjects controlObjects, uint32_t btn);
     void updateJoyFunctions();
     void addButtons();
-    void buttonUpdate(int Button_number);
+    void buttonUpdate();
     bool GetSmoothButton(int Button_number);
+    double isAxisZero(uint32_t axis);
+    static void updateHelper(void* instName);
 };
 
 #endif //SMOOTHJOYSTICK_H

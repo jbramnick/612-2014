@@ -28,4 +28,9 @@ const static uint8_t SHIFT_HIGH = BUTTON_RB;
 const static uint8_t LEFT_DRIVE  = AXIS_L_Y;
 const static uint8_t RIGHT_DRIVE = AXIS_R_Y;
 
+//isAxisZero Stuff -- Don't touch!
+const static double TRIG_R = 1;
+const static double TRIG_L = -1;
+const static double TRIG_NONE = 0;
+
 #endif

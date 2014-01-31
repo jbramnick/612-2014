@@ -1,17 +1,17 @@
 #include <vector>
 #include "FunctionRegistry.h"
 
-functionRegistry::functionRegistry()
+FunctionRegistry::FunctionRegistry()
 {
 
 }
 
-functionRegistry::~functionRegistry()
+FunctionRegistry::~FunctionRegistry()
 {
 
 }
 
-void functionRegistry::updateFunctions()
+void FunctionRegistry::updateFunctions()
 {
     for(unsigned int j = 0; j < instances.size(); j++)
     {
@@ -20,7 +20,7 @@ void functionRegistry::updateFunctions()
     }
 }
 
-void functionRegistry::addFunctions(functionName funk, instType funkObj)
+void FunctionRegistry::addFunctions(functionName funk, instType funkObj)
 {
     instances.push_back(funkObj);
     functions.push_back(funk);

@@ -13,7 +13,6 @@ public:
     void setHigh();
     void setLow();
     DoubleSolenoid* shifter;
-    Pneumatics* pneumatics;
     enum Gear {high,low};
     Gear gear;
     const static double TIME= 0.1;

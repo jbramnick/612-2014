@@ -3,11 +3,11 @@
 
 #include <vector>
 
-class functionRegistry
+class FunctionRegistry
 {
 public:
-    functionRegistry();
-    ~functionRegistry();
+    FunctionRegistry();
+    ~FunctionRegistry();
     typedef void* instType;
     typedef void(*functionName)(instType);
     std::vector<instType> instances;

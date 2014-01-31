@@ -1,12 +1,17 @@
 #include "main.h"
+#include "612.h"
 #include <DigitalInput.h>
 #include <Relay.h>
 #include <Joystick.h>
 #include "ports.h"
 
+main_robot* robot=NULL;
+
 main_robot::main_robot()
 {
-
+    printf("hello\n");
+    printf("world\n");
+    robot=this;
 }
 
 main_robot::~main_robot()
@@ -15,6 +20,8 @@ main_robot::~main_robot()
 
 void main_robot::RobotInit()
 {
+    printf("robot init\n");
+    update = new FunctionRegistry();
     driverJoy = new Joystick(DRIVER_JOY_PORT);
     gunnerJoy = new Joystick(GUNNER_JOY_PORT);
     //pnum = new Pneumatics(1,8,1,8); // TODO Placeholder for the ports
@@ -58,6 +65,12 @@ void main_robot::DisabledPeriodic()
 }
 void main_robot::TestPeriodic()
 {
+    static int output=0;
+    if(output%20==0)
+    {
+        printf("test periodic\n");
+    }
+    output++;
     pnum->checkPressure();
     pnum->updateSolenoid();
     if(gunnerJoy->GetRawButton(5))
