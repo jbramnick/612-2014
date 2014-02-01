@@ -90,17 +90,26 @@ void Shooter::buttonHelper(void* objPtr, uint8_t button){
 
 void Shooter::update()
 {
-    if(shooterJoy -> getTriggerState(shooterJoy->axis) == TRIG_L)
+    if(shooterJoy -> GetTriggerState() == TRIG_L)
     {
-        Shooter::pitchUp();
+        pitchUp();
     }
-    else if(shooterJoy -> getTriggerState(shooterJoy->axis) == TRIG_R)
+    else if(shooterJoy -> GetTriggerState() == TRIG_R)
     {
-        Shooter::pitchDown();
+        pitchDown();
     }
     else
     {
-        Shooter::pitchStop();
+        pitchStop();
+    }
+
+    if(shooterJoy -> GetSmoothButton(ROLLERS))
+    {
+        pull();
+    }
+    else
+    {
+        pullStop();
     }
 }
 

@@ -15,7 +15,7 @@ const static uint8_t BUTTON_RCLK = 10;
 //Axes
 const static uint8_t AXIS_L_X = 1;
 const static uint8_t AXIS_L_Y = 2;
-const static uint8_t TRIGGERS = 3;
+const static uint8_t AXIS_TRIGGERS = 3;
 const static uint8_t AXIS_R_X = 4;
 const static uint8_t AXIS_R_Y = 5;
 const static uint8_t DPAD_X   = 6;

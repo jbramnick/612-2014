@@ -26,14 +26,12 @@ public:
     std::vector<bool> funcBools;
     std::vector<std::bitset<3>* > buttons;
 
-    uint32_t axis;
-
     void addJoyFunctions(joyFunctions controlFunctions, joyfuncObjects controlObjects, uint32_t btn);
     void updateJoyFunctions();
     void addButtons();
     void buttonUpdate();
     bool GetSmoothButton(int Button_number);
-    double getTriggerState(uint32_t axis);
+    double GetTriggerState();
     bool isAxisZero(uint32_t axis);
     static void updateHelper(void* instName);
 };
