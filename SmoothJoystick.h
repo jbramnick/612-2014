@@ -30,7 +30,7 @@ public:
     void addButtons();
     void buttonUpdate();
     bool GetSmoothButton(int Button_number);
-    double isAxisZero(uint32_t axis);
+    double getTriggerState(uint32_t axis);
     static void updateHelper(void* instName);
 };
 
