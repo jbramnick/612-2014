@@ -22,15 +22,19 @@ void main_robot::RobotInit()
 {
     printf("robot init\n");
     update = new FunctionRegistry();
-    driverJoy = new Joystick(DRIVER_JOY_PORT);
-    gunnerJoy = new Joystick(GUNNER_JOY_PORT);
-    //pnum = new Pneumatics(1,8,1,8); // TODO Placeholder for the ports
-    //shift = new Shifter(1,7,8);
-    //shift->setHigh();
+    driverJoy = new SmoothJoystick(DRIVER_JOY_PORT);
+    gunnerJoy = new SmoothJoystick(GUNNER_JOY_PORT);
+    pnum = new Pneumatics(PNUM_DIGIN_MODULE, PNUM_DIGIN_CHANNEL, PNUM_RELAY_MODULE, PNUM_RELAY_CHANNEL);
+    shift = new Shifter(SHIFT_MOD, SHIFT_FCHAN, SHIFT_RCHAN);
+    shift->setHigh();
     drive = new DriveTrain(TALON_FL_MODULE, TALON_FL_CHANNEL,
                            TALON_RL_MODULE, TALON_RL_CHANNEL,
                            TALON_FR_MODULE, TALON_FR_CHANNEL,
                            TALON_RR_MODULE, TALON_RR_CHANNEL);
+    shoot = new Shooter(SHOOT_JAG_MODULE,
+                        SHOOT_TALON_MODULE, SHOOT_TALON_CHANNEL,
+                        SHOOT_SLNOID_MODULE, SHOOT_SLNOID_FCHAN, SHOOT_SLNOID_RCHAN,
+                        GUNNER_JOY_PORT);
 }
 void main_robot::TeleopInit()
 {
