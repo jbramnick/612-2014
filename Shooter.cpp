@@ -12,6 +12,8 @@ Shooter::Shooter(uint8_t axisMod,
     attractor = new Talon(attractMod, attractChan);
     clamper = new DoubleSolenoid(clampMod, clampFChan, clampRChan);
     shooterJoy = new SmoothJoystick(sjPort);
+    robot -> gunnerJoy -> addJoyFunctions(&buttonHelper,(void*)this,CLAMP_UP);
+    robot -> gunnerJoy -> addJoyFunctions(&buttonHelper,(void*)this,CLAMP_DOWN);
     robot -> update -> addFunctions(&updateHelper, (void*)this);
 }
 
@@ -75,7 +77,7 @@ void Shooter::clampUp()
 }
 
 //A for down, Y for clamp up, X to fire
-void Shooter::buttonHelper(void* objPtr, uint8_t button){
+void Shooter::buttonHelper(void* objPtr, uint32_t button){
     Shooter* shooterObj=(Shooter*)objPtr;
     if(button == CLAMP_UP)
     {

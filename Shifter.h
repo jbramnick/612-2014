@@ -17,7 +17,7 @@ public:
     enum Gear {high,low};
     Gear gear;
     const static double TIME= 0.1;
-    static void buttonHelper(void* objPtr, uint8_t button);
+    static void buttonHelper(void* objPtr, uint32_t button);
 };
 
 

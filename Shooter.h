@@ -37,7 +37,7 @@ public:
     const static double TIME = 0.1;
 
 
-    static void buttonHelper(void* objPtr, uint8_t button);
+    static void buttonHelper(void* objPtr, uint32_t button);
 
     void update();
     static void updateHelper(void* instName);

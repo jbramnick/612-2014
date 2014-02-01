@@ -17,7 +17,7 @@ public:
     SmoothJoystick(uint32_t port);
     ~SmoothJoystick();
     typedef void* joyfuncObjects;
-    typedef void(*joyFunctions)(joyfuncObjects);
+    typedef void(*joyFunctions)(joyfuncObjects,uint32_t);
     typedef bool* functionBool;
     typedef void* btn_Obj;
     std::vector<joyfuncObjects> Objects;

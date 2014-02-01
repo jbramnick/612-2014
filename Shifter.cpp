@@ -5,6 +5,8 @@
 Shifter::Shifter(uint8_t mod,uint32_t chanF,uint32_t chanR)
 {
     shifter=new DoubleSolenoid(mod,chanF,chanR);
+    robot -> driverJoy -> addJoyFunctions(&buttonHelper,(void*)this,SHIFT_LOW);
+    robot -> driverJoy -> addJoyFunctions(&buttonHelper,(void*)this,SHIFT_HIGH);
 }
 
 Shifter::~Shifter()
@@ -36,7 +38,7 @@ void Shifter::setLow()
     robot->pnum->setVectorValues(TIME, shifter, DoubleSolenoid::kReverse);
 }
 
-void Shifter::buttonHelper(void* objPtr, uint8_t button){
+void Shifter::buttonHelper(void* objPtr, uint32_t button){
     Shifter* ShifterObj=(Shifter*)objPtr;
     if(button == SHIFT_LOW)
     {

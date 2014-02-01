@@ -36,7 +36,7 @@ void SmoothJoystick::updateJoyFunctions()
         {
             if(!funcBools.at(k))
             {
-                (joystickFuncs.at(k))(Objects.at(k));
+                (joystickFuncs.at(k))(Objects.at(k),joyfuncButtons.at(k));
                 funcBools.at(k)=true;
             }
         }
