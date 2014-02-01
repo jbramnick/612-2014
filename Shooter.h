@@ -32,7 +32,7 @@ public:
     Pneumatics* pneumatics;
     SmoothJoystick* shooterJoy;
     //Blah* puncher;
-    const static float SPEED_AXISPOWER = 0.5f;
+    const static float SPEED_AXISPOWER;
     const static float SPEED_ATTRACTOR = 0.5f;
     const static double TIME = 0.1;
 

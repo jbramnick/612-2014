@@ -24,10 +24,10 @@ public:
     static bool isTurningL;
     static bool isTurningR;
     double NeededDist;
-    static const float SPEED = 1.0f;
-    static double PI;
+    static const float SPEED;
+    static const double PI;
     static const double ROBOTRAD = 1;
-    static double CIRCUMROBOT;
+    static const double CIRCUMROBOT;
 };
 
 #endif // DRIVETRAIN_H

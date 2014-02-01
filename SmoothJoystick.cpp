@@ -10,6 +10,7 @@
 SmoothJoystick::SmoothJoystick(uint32_t port): Joystick(port)
 {
      TRIGGER_TOLERANCE = 0.1;
+     addButtons();
      robot -> update -> addFunctions(&updateHelper, (void*)this);
 }
 
@@ -95,15 +96,15 @@ trigStates SmoothJoystick::GetTriggerState()//accepts axis port, returns 1 or -1
     {
         a = (a * -1);
     }
-    if(a < TRIGGER_TOLERANCE)
+    if(a > TRIGGER_TOLERANCE)
     {
         if(GetRawAxis(AXIS_TRIGGERS) > 0)
         {
-            return TRIG_R;
+            return TRIG_L;
         }
         else
         {
-            return TRIG_L;
+            return TRIG_R;
         }
     }
     else
@@ -122,7 +123,7 @@ bool SmoothJoystick::isAxisZero(uint32_t axis)
     {
         return false;
     }
-}
+}file:///usr/share/applications/kde4/konsole.desktop
 
 void SmoothJoystick::updateHelper(void* instName)
 {

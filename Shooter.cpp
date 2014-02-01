@@ -3,6 +3,8 @@
 #include "main.h"
 #include "SmoothJoystick.h"
 
+const float Shooter::SPEED_AXISPOWER = 0.5f;
+
 Shooter::Shooter(uint8_t axisMod,
                  uint8_t attractMod, uint32_t attractChan,
                  uint8_t clampMod, uint32_t clampFChan, uint32_t clampRChan,
@@ -15,6 +17,7 @@ Shooter::Shooter(uint8_t axisMod,
     robot -> gunnerJoy -> addJoyFunctions(&buttonHelper,(void*)this,CLAMP_UP);
     robot -> gunnerJoy -> addJoyFunctions(&buttonHelper,(void*)this,CLAMP_DOWN);
     robot -> update -> addFunctions(&updateHelper, (void*)this);
+    printf("Shooters have been updated\n");
 }
 
 Shooter::~Shooter()
