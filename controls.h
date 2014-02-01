@@ -15,7 +15,7 @@ const static uint8_t BUTTON_RCLK = 10;
 //Axes
 const static uint8_t AXIS_L_X = 1;
 const static uint8_t AXIS_L_Y = 2;
-const static uint8_t TRIGGERS = 3;
+const static uint8_t AXIS_TRIGGERS = 3;
 const static uint8_t AXIS_R_X = 4;
 const static uint8_t AXIS_R_Y = 5;
 const static uint8_t DPAD_X   = 6;
@@ -35,9 +35,6 @@ const static uint8_t CLAMP_DOWN = BUTTON_B;
 //Rollers
 const static uint8_t ROLLERS = BUTTON_X;
 
-//isAxisZero Stuff -- Don't touch!
-const static double TRIG_R = 1;
-const static double TRIG_L = -1;
-const static double TRIG_NONE = 0;
-
+//Trigger State
+enum trigStates {TRIG_L, TRIG_R, TRIG_NONE};
 #endif

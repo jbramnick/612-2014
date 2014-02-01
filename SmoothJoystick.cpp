@@ -88,16 +88,16 @@ void SmoothJoystick::buttonUpdate()
     }
 }
 
-double SmoothJoystick::getTriggerState(uint32_t axis)//accepts axis port, returns 1 or -1 if axis value is in the Trigger tolerance range
+trigStates SmoothJoystick::GetTriggerState()//accepts axis port, returns 1 or -1 if axis value is in the Trigger tolerance range
 {
-    double a = GetRawAxis(axis);
+    double a = GetRawAxis(AXIS_TRIGGERS);
     if(a < 0)
     {
         a = (a * -1);
     }
     if(a < TRIGGER_TOLERANCE)
     {
-        if(GetRawAxis(axis) > 0)
+        if(GetRawAxis(AXIS_TRIGGERS) > 0)
         {
             return TRIG_R;
         }
@@ -109,6 +109,18 @@ double SmoothJoystick::getTriggerState(uint32_t axis)//accepts axis port, return
     else
     {
         return TRIG_NONE;
+    }
+}
+
+bool SmoothJoystick::isAxisZero(uint32_t axis)
+{
+    if(GetRawAxis(axis) >= (deadZone * -1) || GetRawAxis(axis) <= (deadZone))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }
 

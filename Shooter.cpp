@@ -1,13 +1,18 @@
 #include "Shooter.h"
 #include "612.h"
+#include "main.h"
+#include "SmoothJoystick.h"
 
 Shooter::Shooter(uint8_t axisMod,
                  uint8_t attractMod, uint32_t attractChan,
-                 uint8_t clampMod, uint32_t clampFChan, uint32_t clampRChan)
+                 uint8_t clampMod, uint32_t clampFChan, uint32_t clampRChan,
+                 uint32_t sjPort)
 {
     axis = new CANJaguar(axisMod);
     attractor = new Talon(attractMod, attractChan);
     clamper = new DoubleSolenoid(clampMod, clampFChan, clampRChan);
+    shooterJoy = new SmoothJoystick(sjPort);
+    robot -> update -> addFunctions(&updateHelper, (void*)this);
 }
 
 Shooter::~Shooter()
@@ -75,7 +80,7 @@ void Shooter::buttonHelper(void* objPtr, uint8_t button){
     if(button == CLAMP_UP)
     {
         shooterObj->clampUp();
-        
+
     }
     else if(button == CLAMP_DOWN)
     {
@@ -83,4 +88,33 @@ void Shooter::buttonHelper(void* objPtr, uint8_t button){
     }
 }
 
+void Shooter::update()
+{
+    if(shooterJoy -> GetTriggerState() == TRIG_L)
+    {
+        pitchUp();
+    }
+    else if(shooterJoy -> GetTriggerState() == TRIG_R)
+    {
+        pitchDown();
+    }
+    else
+    {
+        pitchStop();
+    }
 
+    if(shooterJoy -> GetSmoothButton(ROLLERS))
+    {
+        pull();
+    }
+    else
+    {
+        pullStop();
+    }
+}
+
+void Shooter::updateHelper(void* instName)
+{
+    Shooter* shooterObj = (Shooter*)instName;
+    shooterObj -> update();
+}
