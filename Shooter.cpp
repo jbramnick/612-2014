@@ -67,3 +67,19 @@ void Shooter::clampUp()
     pullStop();
     clamp = up;
 }
+
+//A for down, Y for clamp up, X to fire
+void Shooter::buttonHelper(void* objPtr, uint8_t button){
+    Shooter* shooterObj=(Shooter*)objPtr;
+    if(button == SHIFT_LOW)
+    {
+        shooterObj->clampUp();
+        
+    }
+    else if(button == SHIFT_HIGH)
+    {
+        shooterObj->clampDown();
+    }
+}
+
+

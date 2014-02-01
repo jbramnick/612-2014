@@ -39,3 +39,18 @@ void Shifter::setLow()
     gear=low;
     robot->pnum->setVectorValues(TIME, shifter, DoubleSolenoid::kReverse);
 }
+
+void Shifter::buttonHelper(void* objPtr, uint8_t button){
+    Shifter* ShifterObj=(Shifter*)objPtr;
+    if(button == SHIFT_LOW)
+    {
+        ShifterObj->setLow();
+        
+    }
+    else if(button == SHIFT_HIGH)
+    {
+        ShifterObj->setHigh();
+    }
+}
+
+
