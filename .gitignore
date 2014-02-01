@@ -12,17 +12,13 @@
 *.la
 *.a
 
-# ucpp
 .ucpp
 .wrmakefile
+.wrproject
+.cproject
+.project
 Makefile
 PPC603gnu
-.cproject
-.project
-.wrproject
-
 .directory
-
-.cproject
-.wrproject
-.project
+*.*~
+*.*.kate*
