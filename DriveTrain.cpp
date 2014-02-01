@@ -127,5 +127,3 @@ void DriveTrain::updateHelper(void* instName)
     DriveTrain* driveObj = (DriveTrain*)instName;
     driveObj->update();
 }
-
-

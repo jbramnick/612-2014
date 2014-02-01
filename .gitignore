@@ -1,3 +1,5 @@
+
+# Guys, please make sure you aren't commiting files that aren't needed.
 # Compiled Object files
 *.slo
 *.lo
@@ -12,17 +14,13 @@
 *.la
 *.a
 
-# ucpp
 .ucpp
 .wrmakefile
+.wrproject
+.cproject
+.project
 Makefile
 PPC603gnu
-.cproject
-.project
-.wrproject
-
 .directory
-
-.cproject
-.wrproject
-.project
+*.*~
+*.*.kate*
