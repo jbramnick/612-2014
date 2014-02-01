@@ -4,7 +4,6 @@
 #include <RobotDrive.h>
 #include "EncodeDistance.h"
 #include "ports.h"
-#include "controls.h"
 
 class DriveTrain : public RobotDrive
 {
@@ -17,12 +16,13 @@ public:
     void teleTurn(Dir direction, double power);
     void update();
     static void updateHelper(void* instName);
+    bool isAuto();    
     EncodeDistance* encode;
-    static bool isMoving;
-    static bool leftHasDriven;
-    static bool rightHasDriven;
-    static const double NeededDist = 5;
-    static const double NeededDegrees = 10;
+    static bool isMovingL;
+    static bool isMovingR;
+    static bool isTurningL;
+    static bool isTurningR;
+    double NeededDist;
     static const float SPEED = 1.0f;
     static double PI;
     static const double ROBOTRAD = 1;
