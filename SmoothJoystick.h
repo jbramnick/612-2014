@@ -11,6 +11,7 @@ class SmoothJoystick: public Joystick
 {
 private:
     static const int amountOfButtons = 12;
+    static const double deadZone = 0.1;
     double TRIGGER_TOLERANCE;
 public:
     SmoothJoystick(uint32_t port);
@@ -25,12 +26,15 @@ public:
     std::vector<bool> funcBools;
     std::vector<std::bitset<3>* > buttons;
 
+    uint32_t axis;
+
     void addJoyFunctions(joyFunctions controlFunctions, joyfuncObjects controlObjects, uint32_t btn);
     void updateJoyFunctions();
     void addButtons();
     void buttonUpdate();
     bool GetSmoothButton(int Button_number);
     double getTriggerState(uint32_t axis);
+    bool isAxisZero(uint32_t axis);
     static void updateHelper(void* instName);
 };
 

@@ -112,6 +112,18 @@ double SmoothJoystick::getTriggerState(uint32_t axis)//accepts axis port, return
     }
 }
 
+bool SmoothJoystick::isAxisZero(uint32_t axis)
+{
+    if(GetRawAxis(axis) >= (deadZone * -1) || GetRawAxis(axis) <= (deadZone))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 void SmoothJoystick::updateHelper(void* instName)
 {
     SmoothJoystick* smoothObj = (SmoothJoystick*)instName;
