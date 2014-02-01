@@ -59,7 +59,7 @@ void DriveTrain::autoTurn(double degrees)                         // any degrees
 
 void DriveTrain::teleTurn(Dir direction, double power)
 {
-    if (!(isAuto()))
+    if (isAuto())
     {
         stopAuto();
     }
