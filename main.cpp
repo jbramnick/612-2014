@@ -50,6 +50,7 @@ void main_robot::DisabledInit()
 }
 void main_robot::TeleopPeriodic()
 {
+    update->updateFunctions();
     float left = driverJoy->GetRawAxis(2);
     float right = driverJoy->GetRawAxis(5);
     drive->TankDrive(left, right);
