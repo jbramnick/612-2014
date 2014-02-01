@@ -17,6 +17,7 @@ public:
     void update();
     static void updateHelper(void* objPtr);
     bool isAuto();
+    void stopAuto();
     EncodeDistance* encode;
     static bool isMovingL;
     static bool isMovingR;
