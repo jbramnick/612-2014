@@ -8,6 +8,7 @@
 #include <Relay.h>
 #include "Pneumatics.h"
 #include "Shifter.h"
+#include "Shooter.h"
 #include "FunctionRegistry.h"
 
 class main_robot: public IterativeRobot
@@ -24,11 +25,12 @@ public:
     void AutonomousPeriodic();
     void DisabledPeriodic();
     void TestPeriodic();
-    Joystick* driverJoy;
-    Joystick* gunnerJoy;
+    SmoothJoystick* driverJoy;
+    SmoothJoystick* gunnerJoy;
     Pneumatics* pnum;
     Shifter* shift;
     DriveTrain* drive;
+    Shooter* shoot;
     FunctionRegistry* update;
 };
 
