@@ -1,4 +1,5 @@
 #include "Shooter.h"
+#include "612.h"
 
 Shooter::Shooter(uint8_t axisMod,
                  uint8_t attractMod, uint32_t attractChan,
@@ -71,12 +72,12 @@ void Shooter::clampUp()
 //A for down, Y for clamp up, X to fire
 void Shooter::buttonHelper(void* objPtr, uint8_t button){
     Shooter* shooterObj=(Shooter*)objPtr;
-    if(button == SHIFT_LOW)
+    if(button == CLAMP_UP)
     {
         shooterObj->clampUp();
         
     }
-    else if(button == SHIFT_HIGH)
+    else if(button == CLAMP_DOWN)
     {
         shooterObj->clampDown();
     }

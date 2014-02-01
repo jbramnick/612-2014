@@ -61,14 +61,15 @@ void DriveTrain::teleTurn(Dir direction, double power)
 {
     if (!(isAuto()))
     {
-        if (direction == RIGHT)
-        {
-            TankDrive(power,-1*power);
-        }
-        else if (direction == LEFT)
-        {
-            TankDrive(-1*power,power);
-        }
+        stopAuto();
+    }
+    if (direction == RIGHT)
+    {
+        TankDrive(power,-1*power);
+    }
+    else if (direction == LEFT)
+    {
+        TankDrive(-1*power,power);
     }
 }
 
@@ -115,7 +116,7 @@ void DriveTrain::update()
         isTurningL = false;
         TankDrive(-speedL, speedR);
     }
-    if (isTurningR)  // NeededDist is negative 
+    if (isTurningR)  // NeededDist is negative
     {
         speedL = SPEED;
         if (encode->getLDistance() >= -NeededDist)
@@ -144,9 +145,18 @@ void DriveTrain::updateHelper(void* instName)
 
 bool DriveTrain::isAuto()
 {
-    if ((isMovingL) || (isMovingR) || (isTurningL) || (isTurningR))
-    {
-        return true;
-    }
-    return false;
+    return ((isMovingL) || (isMovingR) || (isTurningL) || (isTurningR));
+}
+
+void DriveTrain::stopAuto()
+{
+    TankDrive(0.0f, 0.0f);
+    encode->EncoderL->Stop();
+    encode->EncoderR->Stop();
+    encode->EncoderL->Reset();
+    encode->EncoderR->Reset();
+    isMovingL = false;
+    isMovingR = false;
+    isTurningL = false;
+    isTurningR = false;
 }
