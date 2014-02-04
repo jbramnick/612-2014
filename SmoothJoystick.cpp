@@ -123,7 +123,7 @@ bool SmoothJoystick::isAxisZero(uint32_t axis)
     {
         return false;
     }
-}file:///usr/share/applications/kde4/konsole.desktop
+}
 
 void SmoothJoystick::updateHelper(void* instName)
 {
