@@ -6,6 +6,8 @@
 #include <DoubleSolenoid.h>
 #include "Pneumatics.h"
 #include "DriveTrain.h"
+#include "612.h"
+#include "main.h"
 
 
 Pneumatics::Pneumatics(uint8_t digitalMod, uint32_t digitalChannel,
@@ -13,17 +15,19 @@ Pneumatics::Pneumatics(uint8_t digitalMod, uint32_t digitalChannel,
 {
     switchObject = new DigitalInput(digitalMod, digitalChannel);
     compressor = new Relay(compModuleNumber, compChannel, Relay::kForwardOnly);
+    robot -> update -> addFunctions(&UpdateHelper, (void*) this);
+    printf("Phhhhooooooooooomatics have been updated\n");
 }
 
 void Pneumatics::checkPressure()
 {
     if(switchObject->Get() == 1)
     {
-        compressor->Set(Relay::kForward);
+        compressor->Set(Relay::kOff);
     }
     else
     {
-        compressor->Set(Relay::kOff);
+        compressor->Set(Relay::kForward);
     }
 }
 
@@ -54,4 +58,11 @@ void Pneumatics::setVectorValues(double timerValues, DoubleSolenoid* startSoleno
     solenoid.push_back(startSolenoid);
     startSolenoid->Set(value);
     solenoidTimer->Start();
+}
+
+void Pneumatics::UpdateHelper(void* instName)
+{
+    Pneumatics* pnumObj = (Pneumatics*)instName;
+    pnumObj -> checkPressure();
+    pnumObj -> updateSolenoid();
 }

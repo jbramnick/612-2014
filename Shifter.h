@@ -3,6 +3,7 @@
 #include <DoubleSolenoid.h>
 #include <Timer.h>
 #include "Pneumatics.h"
+#include "controls.h"
 
 class Shifter
 {
@@ -13,10 +14,10 @@ public:
     void setHigh();
     void setLow();
     DoubleSolenoid* shifter;
-    Pneumatics* pneumatics;
     enum Gear {high,low};
     Gear gear;
     const static double TIME= 0.1;
+    static void buttonHelper(void* objPtr, uint32_t button);
 };
 
 
