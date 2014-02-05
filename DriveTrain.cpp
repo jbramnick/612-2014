@@ -47,7 +47,6 @@ void DriveTrain::autoTurn(double degrees)                         // any degrees
 {
     double degrees2Radians = degrees * (PI/180);
     double arcLength = CIRCUMROBOT * (degrees2Radians/(2 * PI));  // checks the length of the arc in feet
-<<<<<<< HEAD
     NeededDist = arcLength;
     if (degrees > 0){
         TankDrive(-SPEED, SPEED);
@@ -56,7 +55,7 @@ void DriveTrain::autoTurn(double degrees)                         // any degrees
     if (degrees < 0){
         TankDrive(SPEED, -SPEED);
         isTurningR = true;
-=======
+    }
     if (degrees == 0)
     {
         encode->EncoderL->Stop();
@@ -86,7 +85,6 @@ void DriveTrain::autoTurn(double degrees)                         // any degrees
             encode->EncoderR->Stop();
             TankDrive(0.0f,0.0f);
         }
->>>>>>> f66df8dbfd12da698161252455afe2c7a5b9a21e
     }
     encode->EncoderL->Start();
     encode->EncoderR->Start();
@@ -150,11 +148,7 @@ void DriveTrain::update()
         isTurningL = false;
         TankDrive(-speedL, speedR);
     }
-<<<<<<< HEAD
-    if (isTurningR)  // NeededDist is negative 
-=======
     else
->>>>>>> f66df8dbfd12da698161252455afe2c7a5b9a21e
     {
         speedL = SPEED;
         if (encode->getLDistance() >= -NeededDist)
@@ -175,12 +169,7 @@ void DriveTrain::update()
     }
 }
 
-<<<<<<< HEAD
-
-void DriveTrain::updateHelper(void* objPtr)
-=======
 void DriveTrain::updateHelper(void* instName)
->>>>>>> f66df8dbfd12da698161252455afe2c7a5b9a21e
 {
     DriveTrain* driveObj = (DriveTrain*)instName;
     driveObj->update();

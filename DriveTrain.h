@@ -15,12 +15,9 @@ public:
     void autoTurn(double degrees);
     void teleTurn(Dir direction, double power);
     void update();
-<<<<<<< HEAD
-    static void updateHelper(void* objPtr);
+
     bool isAuto();    
-=======
     static void updateHelper(void* instName);
->>>>>>> f66df8dbfd12da698161252455afe2c7a5b9a21e
     EncodeDistance* encode;
     static bool isMovingL;
     static bool isMovingR;
