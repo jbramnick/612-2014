@@ -3,12 +3,13 @@
 #include "612.h"
 #include "main.h"
 
-double DriveTrain::PI = 3.141592653;
-double DriveTrain::CIRCUMROBOT = 2 * PI * ROBOTRAD;
+const double DriveTrain::PI = 3.141592653;
+const double DriveTrain::CIRCUMROBOT = 2 * PI * ROBOTRAD;
 bool DriveTrain::isMovingL = false;
 bool DriveTrain::isMovingR = false;
 bool DriveTrain::isTurningL = false;
 bool DriveTrain::isTurningR = false;
+const float DriveTrain::SPEED = 1.0f;
 
 DriveTrain::DriveTrain(uint8_t modFL,uint32_t chanFL,
                         uint8_t modRL,uint32_t chanRL,
@@ -24,9 +25,14 @@ DriveTrain::DriveTrain(uint8_t modFL,uint32_t chanFL,
                                 ENCODER_RMODULE_A, ENCODER_RCHANNEL_A,
                                 ENCODER_RMODULE_B, ENCODER_RCHANNEL_B);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     robot -> update -> addFunctions(&updateHelper, (void*) this);
 >>>>>>> f66df8dbfd12da698161252455afe2c7a5b9a21e
+=======
+    robot -> update -> addFunctions(&updateHelper, (void*) this);
+    printf("Drivetrain has been updated\n");
+>>>>>>> 1e31d8bb7e947f54bf1c5005de0f9101ed607617
 }
 
 DriveTrain::~DriveTrain()
@@ -55,6 +61,7 @@ void DriveTrain::autoTurn(double degrees)                         // any degrees
     if (degrees < 0){
         TankDrive(SPEED, -SPEED);
         isTurningR = true;
+<<<<<<< HEAD
     }
     if (degrees == 0)
     {
@@ -85,6 +92,8 @@ void DriveTrain::autoTurn(double degrees)                         // any degrees
             encode->EncoderR->Stop();
             TankDrive(0.0f,0.0f);
         }
+=======
+>>>>>>> 1e31d8bb7e947f54bf1c5005de0f9101ed607617
     }
     encode->EncoderL->Start();
     encode->EncoderR->Start();
@@ -92,16 +101,17 @@ void DriveTrain::autoTurn(double degrees)                         // any degrees
 
 void DriveTrain::teleTurn(Dir direction, double power)
 {
-    if (!(isAuto()))
+    if (isAuto())
     {
-        if (direction == RIGHT)
-        {
-            TankDrive(power,-1*power);
-        }
-        else if (direction == LEFT)
-        {
-            TankDrive(-1*power,power);
-        }
+        stopAuto();
+    }
+    if (direction == RIGHT)
+    {
+        TankDrive(power,-1*power);
+    }
+    else if (direction == LEFT)
+    {
+        TankDrive(-1*power,power);
     }
 }
 
@@ -148,7 +158,11 @@ void DriveTrain::update()
         isTurningL = false;
         TankDrive(-speedL, speedR);
     }
+<<<<<<< HEAD
     else
+=======
+    if (isTurningR)  // NeededDist is negative
+>>>>>>> 1e31d8bb7e947f54bf1c5005de0f9101ed607617
     {
         speedL = SPEED;
         if (encode->getLDistance() >= -NeededDist)
@@ -177,9 +191,18 @@ void DriveTrain::updateHelper(void* instName)
 
 bool DriveTrain::isAuto()
 {
-    if ((isMovingL) || (isMovingR) || (isTurningL) || (isTurningR))
-    {
-        return true;
-    }
-    return false;
+    return ((isMovingL) || (isMovingR) || (isTurningL) || (isTurningR));
+}
+
+void DriveTrain::stopAuto()
+{
+    TankDrive(0.0f, 0.0f);
+    encode->EncoderL->Stop();
+    encode->EncoderR->Stop();
+    encode->EncoderL->Reset();
+    encode->EncoderR->Reset();
+    isMovingL = false;
+    isMovingR = false;
+    isTurningL = false;
+    isTurningR = false;
 }

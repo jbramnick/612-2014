@@ -10,6 +10,7 @@
 SmoothJoystick::SmoothJoystick(uint32_t port): Joystick(port)
 {
      TRIGGER_TOLERANCE = 0.1;
+     addButtons();
      robot -> update -> addFunctions(&updateHelper, (void*)this);
 }
 
@@ -36,7 +37,7 @@ void SmoothJoystick::updateJoyFunctions()
         {
             if(!funcBools.at(k))
             {
-                (joystickFuncs.at(k))(Objects.at(k));
+                (joystickFuncs.at(k))(Objects.at(k),joyfuncButtons.at(k));
                 funcBools.at(k)=true;
             }
         }
@@ -88,22 +89,22 @@ void SmoothJoystick::buttonUpdate()
     }
 }
 
-double SmoothJoystick::isAxisZero(uint32_t axis)//accepts axis port, returns 1 or -1 if axis value is in the Trigger tolerance range
+trigStates SmoothJoystick::GetTriggerState()//accepts axis port, returns 1 or -1 if axis value is in the Trigger tolerance range
 {
-    double a = GetRawAxis(axis);
+    double a = GetRawAxis(AXIS_TRIGGERS);
     if(a < 0)
     {
         a = (a * -1);
     }
-    if(a < TRIGGER_TOLERANCE)
+    if(a > TRIGGER_TOLERANCE)
     {
-        if(GetRawAxis(axis) > 0)
+        if(GetRawAxis(AXIS_TRIGGERS) > 0)
         {
-            return TRIG_R;
+            return TRIG_L;
         }
         else
         {
-            return TRIG_L;
+            return TRIG_R;
         }
     }
     else
@@ -111,6 +112,18 @@ double SmoothJoystick::isAxisZero(uint32_t axis)//accepts axis port, returns 1 o
         return TRIG_NONE;
     }
 }
+
+bool SmoothJoystick::isAxisZero(uint32_t axis)
+{
+    if(GetRawAxis(axis) >= (deadZone * -1) || GetRawAxis(axis) <= (deadZone))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}file:///usr/share/applications/kde4/konsole.desktop
 
 void SmoothJoystick::updateHelper(void* instName)
 {
