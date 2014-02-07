@@ -50,16 +50,16 @@ void Shooter::pitchAngle(int32_t angle)
 {
     originAng = currentAng;
     destinationAng = angle;
-	if (angle > 0)
-	{
-		pitchUp();
-		isPitchingUp = true;
-	}
-	if (angle < 0)
-	{
-		pitchDown();
-		isPitchingDown = true;
-	}
+    if (destinationAng < originAng)
+    {
+        pitchUp();
+        isPitchingUp = true;
+    }
+    if (destinationAng > originAng)
+    {
+        pitchDown();
+        isPitchingDown = true;
+    }
 }
 
 void Shooter::pull()
@@ -119,9 +119,10 @@ void Shooter::update()
     {
         pitchStop();
     }
+
     if (isPitchingUp)
     {
-		if (currentAng >= originAng + destinationAng)
+		if (currentAng <= destinationAng)
 		{
 			pitchStop();
 			isPitchingUp = false;
@@ -129,25 +130,25 @@ void Shooter::update()
     }
     if (isPitchingDown)
     {
-		if (currentAng <= originAng + destinationAng)
-		{
-			pitchStop();
-			isPitchingDown = false;
-		}
+        if (currentAng >= destinationAng)
+        {
+            pitchStop();
+            isPitchingDown = false;
+        }
     }
     if(shooterJoy -> GetSmoothButton(PICKUP))
     {
         if (!isPickingUp)
         {
             isPickingUp = true;
-            pitchAngle(-23);
+            pitchAngle(135);
             clampDown();
         }
     }
     else
     {
         isPickingUp = false;
-    	pitchAngle(23);
+    	pitchAngle(45);
     	clampUp();
     }
 }
