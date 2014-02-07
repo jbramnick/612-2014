@@ -13,11 +13,15 @@ FunctionRegistry::~FunctionRegistry()
 
 void FunctionRegistry::updateFunctions()
 {
+    printf("before update\n");
+
     for(unsigned int j = 0; j < instances.size(); j++)
     {
         //in the format of f(object)
         (functions.at(j))(instances.at(j));
     }
+
+    printf("update end\n");
 }
 
 void FunctionRegistry::addFunctions(functionName funk, instType funkObj)
