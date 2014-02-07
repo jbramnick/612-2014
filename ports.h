@@ -47,4 +47,13 @@ const uint32_t ENCODER_RCHANNEL_B = 4;
 const uint32_t DRIVER_JOY_PORT = 1;
 const uint32_t GUNNER_JOY_PORT = 2;
 
+// Sensors
+const static uint8_t usModNumber = 1;
+const static uint32_t usChannel  = 1; //ultrasonic
+const static uint8_t isModNumber = 1;
+const static uint32_t isChannel  = 1;
+const static uint8_t ilModNumber = 1;
+const static uint32_t ilChannel  = 1;
+//have no idea how this is supposed to work...
+
 #endif
