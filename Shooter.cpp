@@ -8,14 +8,18 @@ const float Shooter::SPEED_AXISPOWER = 0.5f;
 Shooter::Shooter(uint8_t axisMod,
                  uint8_t attractMod, uint32_t attractChan,
                  uint8_t clampMod, uint32_t clampFChan, uint32_t clampRChan,
-                 uint32_t sjPort)
+                 uint32_t sjPort,
+                 uint8_t bobModA, uint32_t bobChanA, uint8_t bobModB, uint32_t bobChanB)
 {
     axis = new CANJaguar(axisMod);
     attractor = new Talon(attractMod, attractChan);
     clamper = new DoubleSolenoid(clampMod, clampFChan, clampRChan);
     shooterJoy = robot -> gunnerJoy;
-    shooterJoy -> addJoyFunctions(&buttonHelper,(void*)this,CLAMP_UP);
-    shooterJoy -> addJoyFunctions(&buttonHelper,(void*)this,CLAMP_DOWN);
+    shooterJoy -> addJoyFunctions(&buttonHelper,(void*)this,PICKUP);
+    //shooterJoy -> addJoyFunctions(&buttonHelper,(void*)this,CLAMP_DOWN);
+    bobTheEncoder = new Encoder(bobModA, bobChanA, bobModB, bobChanB);
+    bobTheEncoder->Start();
+    isPickingUp = false;
     robot -> update -> addFunctions(&updateHelper, (void*)this);
 }
 
@@ -39,6 +43,22 @@ void Shooter::pitchDown()
 void Shooter::pitchStop()
 {
     axis->Set(0);
+}
+
+void Shooter::pitchAngle(int32_t angle)
+{
+    originAng = currentAng;
+    destinationAng = angle;
+    if (destinationAng < originAng)
+    {
+        pitchUp();
+        isPitchingUp = true;
+    }
+    if (destinationAng > originAng)
+    {
+        pitchDown();
+        isPitchingDown = true;
+    }
 }
 
 void Shooter::pull()
@@ -78,22 +98,14 @@ void Shooter::clampUp()
     clamp = up;
 }
 
-//A for down, Y for clamp up, X to fire
+//X to fire
 void Shooter::buttonHelper(void* objPtr, uint32_t button){
     Shooter* shooterObj=(Shooter*)objPtr;
-    if(button == CLAMP_UP)
-    {
-        shooterObj->clampUp();
-
-    }
-    else if(button == CLAMP_DOWN)
-    {
-        shooterObj->clampDown();
-    }
 }
 
 void Shooter::update()
 {
+    currentAng = bobTheEncoder->Get(); // TODO: CONVERT PULSE TO DEGREES
     if(shooterJoy -> GetTriggerState() == TRIG_L)
     {
         pitchUp();
@@ -107,13 +119,36 @@ void Shooter::update()
         pitchStop();
     }
 
-    if(shooterJoy -> GetSmoothButton(ROLLERS))
+    if (isPitchingUp)
     {
-        pull();
+        if (currentAng <= destinationAng)
+        {
+            pitchStop();
+            isPitchingUp = false;
+        }
+    }
+    if (isPitchingDown)
+    {
+        if (currentAng >= destinationAng)
+        {
+            pitchStop();
+            isPitchingDown = false;
+        }
+    }
+    if(shooterJoy -> GetSmoothButton(PICKUP))
+    {
+        if (!isPickingUp)
+        {
+            isPickingUp = true;
+            pitchAngle(135);
+            clampDown();
+        }
     }
     else
     {
-        pullStop();
+        isPickingUp = false;
+        pitchAngle(45);
+        clampUp();
     }
 }
 
