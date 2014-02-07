@@ -11,9 +11,9 @@ Shooter::Shooter(uint8_t axisMod,
     axis = new CANJaguar(axisMod);
     attractor = new Talon(attractMod, attractChan);
     clamper = new DoubleSolenoid(clampMod, clampFChan, clampRChan);
-    shooterJoy = new SmoothJoystick(sjPort);
-    robot -> gunnerJoy -> addJoyFunctions(&buttonHelper,(void*)this,CLAMP_UP);
-    robot -> gunnerJoy -> addJoyFunctions(&buttonHelper,(void*)this,CLAMP_DOWN);
+    shooterJoy = robot -> gunnerJoy;
+    shooterJoy -> addJoyFunctions(&buttonHelper,(void*)this,CLAMP_UP);
+    shooterJoy -> addJoyFunctions(&buttonHelper,(void*)this,CLAMP_DOWN);
     robot -> update -> addFunctions(&updateHelper, (void*)this);
 }
 
