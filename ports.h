@@ -48,12 +48,12 @@ const uint32_t DRIVER_JOY_PORT = 1;
 const uint32_t GUNNER_JOY_PORT = 2;
 
 // Sensors
-const static uint8_t usModNumber = 1;
-const static uint32_t usChannel  = 1; //ultrasonic
-const static uint8_t isModNumber = 1;
-const static uint32_t isChannel  = 1;
-const static uint8_t ilModNumber = 1;
-const static uint32_t ilChannel  = 1;
+const static uint8_t USMODNUMBER = 1; //ultrasonic modual number
+const static uint32_t USCHANNEL  = 1; //ultrasonic channel
+const static uint8_t ISMODNUMBER = 1; //infrared Shooter Modual
+const static uint32_t ISCHANNEL  = 1; //Infrared Channel Number
+const static uint8_t ILMODNUMBER = 1; //Infrared Load Modual Number
+const static uint32_t ILCHANNEL  = 1; //Infrared Load Modual Channel
 //have no idea how this is supposed to work...
 
 #endif
