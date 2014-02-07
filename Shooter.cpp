@@ -8,20 +8,18 @@ const float Shooter::SPEED_AXISPOWER = 0.5f;
 Shooter::Shooter(uint8_t axisMod,
                  uint8_t attractMod, uint32_t attractChan,
                  uint8_t clampMod, uint32_t clampFChan, uint32_t clampRChan,
-                 uint32_t sjPort,
                  uint8_t bobModA, uint32_t bobChanA, uint8_t bobModB, uint32_t bobChanB)
 {
     axis = new CANJaguar(axisMod);
     attractor = new Talon(attractMod, attractChan);
     clamper = new DoubleSolenoid(clampMod, clampFChan, clampRChan);
-    shooterJoy = new SmoothJoystick(sjPort);
-    robot -> gunnerJoy -> addJoyFunctions(&buttonHelper,(void*)this,PICKUP);
-    //robot -> gunnerJoy -> addJoyFunctions(&buttonHelper,(void*)this,CLAMP_DOWN);
-    robot -> update -> addFunctions(&updateHelper, (void*)this);
+    shooterJoy = robot -> gunnerJoy;
+    shooterJoy -> addJoyFunctions(&buttonHelper,(void*)this,PICKUP);
+    //shooterJoy -> addJoyFunctions(&buttonHelper,(void*)this,CLAMP_DOWN);
     bobTheEncoder = new Encoder(bobModA, bobChanA, bobModB, bobChanB);
     bobTheEncoder->Start();
-    printf("Shooters have been updated\n");
     isPickingUp = false;
+    robot -> update -> addFunctions(&updateHelper, (void*)this);
 }
 
 Shooter::~Shooter()
