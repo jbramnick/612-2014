@@ -5,6 +5,7 @@
 #include "EncodeDistance.h"
 #include "ports.h"
 
+
 class DriveTrain : public RobotDrive
 {
 public:
@@ -18,6 +19,7 @@ public:
     static void updateHelper(void* instName);
     bool isAuto();
     void stopAuto();
+    double autoAngle();
     EncodeDistance* encode;
     static bool isMovingL;
     static bool isMovingR;
@@ -28,6 +30,8 @@ public:
     static const double PI;
     static const double ROBOTRAD = 1;
     static const double CIRCUMROBOT;
+    double shootAngleSpeed;
+    bool autoOrTele;
 };
 
 #endif // DRIVETRAIN_H
