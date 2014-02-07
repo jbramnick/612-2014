@@ -8,7 +8,6 @@ const float Shooter::SPEED_AXISPOWER = 0.5f;
 Shooter::Shooter(uint8_t axisMod,
                  uint8_t attractMod, uint32_t attractChan,
                  uint8_t clampMod, uint32_t clampFChan, uint32_t clampRChan,
-                 uint32_t sjPort,
                  uint8_t bobModA, uint32_t bobChanA, uint8_t bobModB, uint32_t bobChanB)
 {
     axis = new CANJaguar(axisMod);
