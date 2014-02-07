@@ -17,7 +17,6 @@ Shooter::Shooter(uint8_t axisMod,
     shooterJoy -> addJoyFunctions(&buttonHelper,(void*)this,CLAMP_UP);
     shooterJoy -> addJoyFunctions(&buttonHelper,(void*)this,CLAMP_DOWN);
     robot -> update -> addFunctions(&updateHelper, (void*)this);
-    printf("Shooters have been updated\n");
 }
 
 Shooter::~Shooter()

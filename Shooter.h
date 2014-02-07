@@ -13,8 +13,7 @@ class Shooter
 public:
     Shooter(uint8_t axisMod,
                  uint8_t attractMod, uint32_t attractChan,
-                 uint8_t clampMod, uint32_t clampFChan, uint32_t clampRChan,
-                 uint32_t sjPort);
+                 uint8_t clampMod, uint32_t clampFChan, uint32_t clampRChan);
     ~Shooter();
     enum Clamp {down, up};
     Clamp clamp;
