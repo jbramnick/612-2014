@@ -101,7 +101,8 @@ void Shooter::clampUp()
 
 //X to fire
 void Shooter::buttonHelper(void* objPtr, uint32_t button){
-    Shooter* shooterObj=(Shooter*)objPtr;
+    Shooter* shooterObj;
+    shooterObj = (Shooter*)objPtr;
 }
 
 void Shooter::update()

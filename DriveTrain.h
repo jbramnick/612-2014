@@ -15,15 +15,9 @@ public:
     void autoTurn(double degrees);
     void teleTurn(Dir direction, double power);
     void update();
-<<<<<<< HEAD
-
-    bool isAuto();    
-    static void updateHelper(void* instName);
-=======
     static void updateHelper(void* instName);
     bool isAuto();
     void stopAuto();
->>>>>>> 1e31d8bb7e947f54bf1c5005de0f9101ed607617
     EncodeDistance* encode;
     static bool isMovingL;
     static bool isMovingR;

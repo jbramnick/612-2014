@@ -15,22 +15,21 @@ public:
     void autoTurn(double degrees);
     void teleTurn(Dir direction, double power);
     void update();
-<<<<<<< HEAD
-    static void updateHelper(void* objPtr);
-    bool isAuto();    
-=======
+
     static void updateHelper(void* instName);
->>>>>>> f66df8dbfd12da698161252455afe2c7a5b9a21e
+    bool isAuto();
+    void stopAuto();
+
     EncodeDistance* encode;
     static bool isMovingL;
     static bool isMovingR;
     static bool isTurningL;
     static bool isTurningR;
     double NeededDist;
-    static const float SPEED = 1.0f;
-    static double PI;
+    static const float SPEED;
+    static const double PI;
     static const double ROBOTRAD = 1;
-    static double CIRCUMROBOT;
+    static const double CIRCUMROBOT;
 };
 
 #endif // DRIVETRAIN_H

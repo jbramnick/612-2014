@@ -24,15 +24,8 @@ DriveTrain::DriveTrain(uint8_t modFL,uint32_t chanFL,
                                 ENCODER_LMODULE_B, ENCODER_LCHANNEL_B,
                                 ENCODER_RMODULE_A, ENCODER_RCHANNEL_A,
                                 ENCODER_RMODULE_B, ENCODER_RCHANNEL_B);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
     robot -> update -> addFunctions(&updateHelper, (void*) this);
->>>>>>> f66df8dbfd12da698161252455afe2c7a5b9a21e
-=======
-    robot -> update -> addFunctions(&updateHelper, (void*) this);
-    printf("Drivetrain has been updated\n");
->>>>>>> 1e31d8bb7e947f54bf1c5005de0f9101ed607617
 }
 
 DriveTrain::~DriveTrain()
@@ -61,39 +54,6 @@ void DriveTrain::autoTurn(double degrees)                         // any degrees
     if (degrees < 0){
         TankDrive(SPEED, -SPEED);
         isTurningR = true;
-<<<<<<< HEAD
-    }
-    if (degrees == 0)
-    {
-        encode->EncoderL->Stop();
-        encode->EncoderR->Stop();
-        TankDrive(0.0f,0.0f);
-    }
-    if (degrees < 0)
-    {
-        encode->EncoderL->Start();
-        encode->EncoderR->Start();
-        TankDrive(SPEED, -SPEED);
-        if ((encode->getRDistance() >= arcLength))
-        {
-            encode->EncoderL->Stop();
-            encode->EncoderR->Stop();
-            TankDrive(0.0f,0.0f);
-        }
-    }
-    else if (degrees > 0)
-    {
-        encode->EncoderL->Start();
-        encode->EncoderR->Start();
-        TankDrive(-SPEED, SPEED);
-        if ((encode->getLDistance() >= arcLength))
-        {
-            encode->EncoderL->Stop();
-            encode->EncoderR->Stop();
-            TankDrive(0.0f,0.0f);
-        }
-=======
->>>>>>> 1e31d8bb7e947f54bf1c5005de0f9101ed607617
     }
     encode->EncoderL->Start();
     encode->EncoderR->Start();
@@ -158,11 +118,7 @@ void DriveTrain::update()
         isTurningL = false;
         TankDrive(-speedL, speedR);
     }
-<<<<<<< HEAD
     else
-=======
-    if (isTurningR)  // NeededDist is negative
->>>>>>> 1e31d8bb7e947f54bf1c5005de0f9101ed607617
     {
         speedL = SPEED;
         if (encode->getLDistance() >= -NeededDist)
