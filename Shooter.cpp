@@ -46,16 +46,16 @@ void Shooter::pitchStop()
     axis->Set(0);
 }
 
-void Shooter::pitchAngle(int32_t angle)
+void Shooter::pitchAngle(double newPosition)
 {
-    originAng = currentAng;
-    destinationAng = angle;
-    if (destinationAng < originAng)
+    originPos = currentPos;
+    destinationPos = newPosition;
+    if (newPosition < originPos)
     {
         pitchUp();
         isPitchingUp = true;
     }
-    if (destinationAng > originAng)
+    if (newPosition > originPos)
     {
         pitchDown();
         isPitchingDown = true;
@@ -106,7 +106,7 @@ void Shooter::buttonHelper(void* objPtr, uint32_t button){
 
 void Shooter::update()
 {
-    currentAng = bobTheEncoder->Get(); // TODO: CONVERT PULSE TO DEGREES
+    currentPos = bobTheEncoder->Get();
     if(shooterJoy -> GetTriggerState() == TRIG_L)
     {
         pitchUp();
@@ -122,15 +122,15 @@ void Shooter::update()
 
     if (isPitchingUp)
     {
-		if (currentAng <= destinationAng)
-		{
-			pitchStop();
-			isPitchingUp = false;
-		}
+        if (currentPos <= destinationPos)
+        {
+            pitchStop();
+            isPitchingUp = false;
+        }
     }
     if (isPitchingDown)
     {
-        if (currentAng >= destinationAng)
+        if (currentPos >= destinationPos)
         {
             pitchStop();
             isPitchingDown = false;
@@ -141,15 +141,19 @@ void Shooter::update()
         if (!isPickingUp)
         {
             isPickingUp = true;
-            pitchAngle(135);
+            pitchAngle(PICKUP_POSITION);
+        }
+        if (!isPitchingUp){
             clampDown();
         }
     }
     else
     {
         isPickingUp = false;
-    	pitchAngle(45);
-    	clampUp();
+    	pitchAngle(SHOOTING_POSITION);
+    	if (!isPitchingDown){
+    	    clampUp();
+    	}
     }
 }
 
