@@ -35,6 +35,7 @@ void main_robot::RobotInit()
                         SHOOT_TALON_MODULE, SHOOT_TALON_CHANNEL,
                         SHOOT_SLNOID_MODULE, SHOOT_SLNOID_FCHAN, SHOOT_SLNOID_RCHAN,
                         GUNNER_JOY_PORT);
+    printf("robot init exit\n");
 }
 void main_robot::TeleopInit()
 {
@@ -54,10 +55,15 @@ void main_robot::DisabledInit()
 }
 void main_robot::TeleopPeriodic()
 {
+    printf("Teleop periodic 1\n");
     update->updateFunctions();
+    printf("Teleop periodic 2\n");
     float left = driverJoy->GetRawAxis(2);
+    printf("Teleop periodic 3\n");
     float right = driverJoy->GetRawAxis(5);
+    printf("Teleop periodic 4\n");
     drive->TankDrive(left, right);
+    printf("Teleop periodic end :)\n");
 }
 
 void main_robot::AutonomousPeriodic()
