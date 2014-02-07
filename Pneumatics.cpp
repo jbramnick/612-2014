@@ -16,6 +16,7 @@ Pneumatics::Pneumatics(uint8_t digitalMod, uint32_t digitalChannel,
     switchObject = new DigitalInput(digitalMod, digitalChannel);
     compressor = new Relay(compModuleNumber, compChannel, Relay::kForwardOnly);
     robot -> update -> addFunctions(&UpdateHelper, (void*) this);
+    printf("Phhhhooooooooooomatics have been updated\n");
 }
 
 void Pneumatics::checkPressure()
