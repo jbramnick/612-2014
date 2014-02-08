@@ -3,23 +3,24 @@
 #include "ports.h"
 #include "612.h"
 
+
 Autonomous::Autonomous()
 {
 }
 Autonomous::~Autonomous()
 {
 }
-void Autonomous::forward(double distance)
+void Autonomous::moveForward()
 {
-    robot->drive->autoDrive(distance);
+    robot->drive->autoDrive(DISTANCE);
 }
-void Autonomous::turn(double degrees)
+void Autonomous::turn()
 {
-    robot->drive->autoTurn(degrees);
+    robot->drive->autoTurn(DEGREES_TURN);
 }
-void Autonomous::tilt(int degrees)        // needs to tilt a certain degrees, probably starting from below going up
+void Autonomous::tilt()        // needs to tilt a certain degrees, probably starting from below going up
 {
-    robot->shoot->pitchAngle(degrees);
+    robot->shoot->pitchAngle(POSITION_TILT);
 }
 void Autonomous::releaseClamp()
 {
@@ -42,18 +43,18 @@ double Autonomous::getTime()
 {
 }
 */
-void Autonomous::update(State stage, double distance, double degreesTurn, int degreesTilt)
+void Autonomous::update()
 {
     switch (stage)
     {
         case DRIVING:
-            forward(distance);
+            moveForward();
             break;
         case TURNING:
-            turn(degreesTurn);
+            turn();
             break;
         case AIMING:
-            tilt(degreesTilt);
+            tilt();
             break;
         case SHOOTING:
             shootBall();
@@ -61,7 +62,7 @@ void Autonomous::update(State stage, double distance, double degreesTurn, int de
         case IDLE:
             break;
         default:
-            break; 
+            break;
     }
 }
 

@@ -8,12 +8,12 @@ class Autonomous
 public:
     Autonomous();
     ~Autonomous();
-    void forward(double distance);
-    void turn(double degrees);
-    void tilt(int degrees);
+    void moveForward();
+    void turn();
+    void tilt();
     void releaseClamp();
     void shootBall();
-    
+
     bool timePassed(float time);        //time measured in seconds
 //  void vision();                      //probably connected to tilt
 //  double getTime();                   // might not be needed at the moment
@@ -21,9 +21,14 @@ public:
     Shooter* shoot;
     Timer* timer;
     enum State {DRIVING, TURNING, AIMING, SHOOTING, IDLE};
-//    State* stage;
+    State stage;
 
-    void update(State stage, double distance, double degreesTurn, int degreesTilt);    
+    void update();
+
+    static const double DISTANCE = 10;
+    static const double DEGREES_TURN = 25;
+    static const double POSITION_TILT = 25;
+
 };
 #endif //AUTONOMOUS_H
 
